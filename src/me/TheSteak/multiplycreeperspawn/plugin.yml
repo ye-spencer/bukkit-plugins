@@ -1,0 +1,11 @@
+name: CreeperSpawn
+version: 1.0.0
+author: TheSteak
+main: me.TheSteak.multiplyscreeperspawn.Main
+description: A plugin that spawns between 1 and 64 creepers on the player (For Minecraft Java Version 1.16.4 [i think, not 100% sure])
+
+commands:
+	creepspawn:
+		aliases: [csr]
+			description: /csr to spawn between 1 and 64 creepers on the player
+		
