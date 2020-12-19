@@ -1,8 +1,13 @@
 package me.TheSteak.multiplycreeperspawn;
 
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+
 
 public class CreeperCommand implements CommandExecutor
 {
@@ -16,8 +21,15 @@ public class CreeperCommand implements CommandExecutor
 	}
 	
 	@Override
-	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) 
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] others) 
 	{
+		Player player = (Player) sender;
+		Location location = player.getLocation();
+		World world = player.getWorld();
+		for (int i = (int) (Math.random() * 64) + 1; i >=0; --i)
+		{
+			world.spawnEntity(location, EntityType.CREEPER);
+		}
 		return false;
 	}
 	
