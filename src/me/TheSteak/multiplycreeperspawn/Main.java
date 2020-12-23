@@ -3,46 +3,30 @@ package me.TheSteak.multiplycreeperspawn;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /*
-[20:43:50 ERROR]: Could not load 'plugins\CreeperSpawnRandom.jar' in folder 'plugins'
-org.bukkit.plugin.InvalidDescriptionException: Invalid plugin.yml
-	at org.bukkit.plugin.java.JavaPluginLoader.getPluginDescription(JavaPluginLoader.java:168) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.bukkit.plugin.SimplePluginManager.loadPlugins(SimplePluginManager.java:144) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.bukkit.craftbukkit.v1_16_R3.CraftServer.loadPlugins(CraftServer.java:381) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at net.minecraft.server.v1_16_R3.DedicatedServer.init(DedicatedServer.java:179) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at net.minecraft.server.v1_16_R3.MinecraftServer.w(MinecraftServer.java:786) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at net.minecraft.server.v1_16_R3.MinecraftServer.lambda$0(MinecraftServer.java:155) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at java.lang.Thread.run(Thread.java:832) [?:?]
-Caused by: org.yaml.snakeyaml.parser.ParserException: while parsing a block mapping
- in 'reader', line 9, column 9:
-            aliases: [csr]
-            ^
-expected <block end>, but found '<block mapping start>'
- in 'reader', line 10, column 13:
-                description: /csr to spawn betwe ... 
-                ^
-
-	at org.yaml.snakeyaml.parser.ParserImpl$ParseBlockMappingKey.produce(ParserImpl.java:572) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.parser.ParserImpl.peekEvent(ParserImpl.java:158) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.parser.ParserImpl.checkEvent(ParserImpl.java:148) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeMappingNode(Composer.java:235) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeNode(Composer.java:162) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeValueNode(Composer.java:257) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeMappingChildren(Composer.java:248) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeMappingNode(Composer.java:236) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeNode(Composer.java:162) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeValueNode(Composer.java:257) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeMappingChildren(Composer.java:248) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeMappingNode(Composer.java:236) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.composeNode(Composer.java:162) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.getNode(Composer.java:95) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.composer.Composer.getSingleNode(Composer.java:119) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.constructor.BaseConstructor.getSingleData(BaseConstructor.java:150) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.Yaml.loadFromReader(Yaml.java:472) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.yaml.snakeyaml.Yaml.load(Yaml.java:411) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.bukkit.plugin.PluginDescriptionFile.<init>(PluginDescriptionFile.java:252) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	at org.bukkit.plugin.java.JavaPluginLoader.getPluginDescription(JavaPluginLoader.java:163) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
-	... 6 more
- */
+[20:22:56] [Server thread/WARN]: Initializing Legacy Material Support. Unless you have legacy plugins and/or data this is a bug!
+[20:23:03] [Server thread/WARN]: Legacy plugin CreeperSpawn v1.0.0 does not specify an api-version.
+[20:23:03] [Server thread/ERROR]: Could not load 'plugins\CreeperSpawnRandom.jar' in folder 'plugins'
+org.bukkit.plugin.InvalidPluginException: Cannot find main class `me.TheSteak.multiplyscreeperspawn.Main'
+        at org.bukkit.plugin.java.PluginClassLoader.<init>(PluginClassLoader.java:66) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at org.bukkit.plugin.java.JavaPluginLoader.loadPlugin(JavaPluginLoader.java:133) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at org.bukkit.plugin.SimplePluginManager.loadPlugin(SimplePluginManager.java:393) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at org.bukkit.plugin.SimplePluginManager.loadPlugins(SimplePluginManager.java:301) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at org.bukkit.craftbukkit.v1_16_R3.CraftServer.loadPlugins(CraftServer.java:381) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at net.minecraft.server.v1_16_R3.DedicatedServer.init(DedicatedServer.java:179) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at net.minecraft.server.v1_16_R3.MinecraftServer.w(MinecraftServer.java:786) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at net.minecraft.server.v1_16_R3.MinecraftServer.lambda$0(MinecraftServer.java:155) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at java.lang.Thread.run(Thread.java:832) [?:?]
+Caused by: java.lang.ClassNotFoundException: me.TheSteak.multiplyscreeperspawn.Main
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:435) ~[?:?]
+        at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:167) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at org.bukkit.plugin.java.PluginClassLoader.findClass(PluginClassLoader.java:96) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:589) ~[?:?]
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:522) ~[?:?]
+        at java.lang.Class.forName0(Native Method) ~[?:?]
+        at java.lang.Class.forName(Class.java:468) ~[?:?]
+        at org.bukkit.plugin.java.PluginClassLoader.<init>(PluginClassLoader.java:64) ~[craftbukkit-1.16.4.jar:git-Bukkit-3eb7236]
+        ... 8 more
+*/
 
 public class Main extends JavaPlugin
 {
