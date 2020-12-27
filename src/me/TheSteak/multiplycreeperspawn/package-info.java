@@ -1,7 +1,4 @@
 /**
- * 
- */
-/**
  * @author TheSteak
  * @version 1.0.5
  *	A package that contains the files that hopefully makes your day that much worse (or better)
