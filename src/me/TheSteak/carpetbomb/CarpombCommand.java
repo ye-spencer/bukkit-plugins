@@ -1,12 +1,12 @@
 package me.TheSteak.carpetbomb;
 
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 
 public class CarpombCommand implements CommandExecutor 
 {
@@ -22,14 +22,12 @@ public class CarpombCommand implements CommandExecutor
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] others) 
 	{
 		Player p = (Player) sender;
-		Location loc = p.getLocation();
-		loc.add(-4, 1, 0);
 		World w = p.getWorld();
 		for (int i = 0; i <= 4; ++i)
 		{
-			loc.add(1, 0, 0);
-			w.strikeLightning(loc);
-			w.spawnEntity(loc, EntityType.MINECART_TNT);
+			w.strikeLightning(p.getTargetBlock(null, 50).getLocation().add(0, 1, 0));
+			Entity tnt = p.getWorld().spawn(p.getTargetBlock(null, 50).getLocation().add(0, 1, 0), TNTPrimed.class);
+            ((TNTPrimed)tnt).setFuseTicks(200);
 		}
 		return false;
 	} 
