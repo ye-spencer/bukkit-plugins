@@ -27,7 +27,7 @@ public class CarpombCommand implements CommandExecutor
 		{
 			w.strikeLightning(p.getTargetBlock(null, 50).getLocation().add(0, 1, 0));
 			Entity tnt = p.getWorld().spawn(p.getTargetBlock(null, 50).getLocation().add(0, 1, 0), TNTPrimed.class);
-            ((TNTPrimed)tnt).setFuseTicks(200);
+            ((TNTPrimed)tnt).setFuseTicks(1);
 		}
 		return false;
 	} 
