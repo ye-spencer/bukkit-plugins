@@ -1,5 +1,5 @@
 name: CarpetBomb
-version: 0.1.0
+version: 1.0.0
 author: TheSteak
 main: me.TheSteak.carpetbomb.Main
 description: A plugin that spawns between 1 and 64 creepers on the player (For Minecraft Java Version 1.16.4 [i think, not 100% sure])
