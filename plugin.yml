@@ -1,10 +1,20 @@
-name: CarpetBomb
-version: 1.0.0
+name: MultiTeamManhunt
+version: 0.0.0
 author: TheSteak
-main: me.TheSteak.carpetbomb.Main
-description: A plugin that spawns between 1 and 64 creepers on the player (For Minecraft Java Version 1.16.4 [i think, not 100% sure])
+main: me.TheSteak.multiteammanhunt.Main
+description: A plugin that allows for tracking of different players on the speedrunner team
 
 commands:
-  carpetbomb:
-    aliases: [cpb]
-    description: /cpb carpet bombs the area
+  manhuntcompass:
+    aliases: [mhc]
+    description: /mhc to give self a compass
+  teamhunter:
+    aliases: [thunt]
+    description: /thunt to set team as hunter
+  teamrunner:
+    aliases: [trun]
+    description: /trun to set team as runner
+  switchtrack:
+    aliases: [switch]
+    description: /switch as hunter to switch who is being tracked
+    
