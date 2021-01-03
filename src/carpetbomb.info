@@ -1,0 +1,10 @@
+name: CarpetBomb
+version: 1.0.0
+author: TheSteak
+main: me.TheSteak.carpetbomb.Main
+description: A plugin that blows up the area that the user is looking at
+
+commands:
+  carpetbomb:
+    aliases: [cpb]
+    description: /cpb carpet bombs the area
