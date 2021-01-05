@@ -15,6 +15,7 @@ public class Main extends JavaPlugin
 	@Override
 	public void onEnable()
 	{
-		new MainhuntCompassCommand(this);
+		new ManhuntCompassCommand(this);
+		new ManhuntTeamManagement(this);
 	}
 }
