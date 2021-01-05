@@ -8,12 +8,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-public class MainhuntCompassCommand implements CommandExecutor 
+public class ManhuntCompassCommand implements CommandExecutor 
 {
 	
 	private Main plugin;
 	
-	public MainhuntCompassCommand (Main in)
+	public ManhuntCompassCommand (Main in)
 	{
 		plugin = in;
 		plugin.getCommand("manhuntcompass").setExecutor(this);
@@ -25,6 +25,6 @@ public class MainhuntCompassCommand implements CommandExecutor
 		Player p = (Player) sender;
 		PlayerInventory inv = p.getInventory();
 		inv.setItem(inv.firstEmpty(), new ItemStack(Material.COMPASS));
-		return false;
+		return true;
 	}
 }
