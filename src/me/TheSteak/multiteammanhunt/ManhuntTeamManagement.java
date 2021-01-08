@@ -16,8 +16,10 @@ public class ManhuntTeamManagement implements CommandExecutor
 	
 	private Main plugin;
 	
-	ArrayList<Player> hunters, runners;
-	ArrayList<Integer> hunterpoint;
+	private boolean track;
+	
+	private ArrayList<Player> hunters, runners;
+	private ArrayList<Integer> hunterpoint;
 	
 	public ManhuntTeamManagement (Main in)
 	{
@@ -30,6 +32,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		hunters = new ArrayList<Player>();
 		runners = new ArrayList<Player>();
 		hunterpoint = new ArrayList<Integer>();
+		track = false;
 		
 	}
 
@@ -62,6 +65,14 @@ public class ManhuntTeamManagement implements CommandExecutor
 		else if ("switchtrack".equals(cmd.getName()))
 		{
 			
+		}
+		else if ("startcompass".equals(cmd.getName()))
+		{
+			track = true;
+		}
+		else if ("stopcompass".equals(cmd.getName()))
+		{
+			track = false;
 		}
 		return false;
 	}
