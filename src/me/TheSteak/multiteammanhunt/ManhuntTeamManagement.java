@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 /*
  * TODO:
  * account for switching teams
+ * 
  */
 public class ManhuntTeamManagement implements CommandExecutor 
 {
@@ -24,6 +25,8 @@ public class ManhuntTeamManagement implements CommandExecutor
 		plugin.getCommand("teamhunter").setExecutor(this);
 		plugin.getCommand("teamrunner").setExecutor(this);
 		plugin.getCommand("switchtrack").setExecutor(this);
+		plugin.getCommand("startcompass").setExecutor(this);
+		plugin.getCommand("stopcompass").setExecutor(this);
 		hunters = new ArrayList<Player>();
 		runners = new ArrayList<Player>();
 		hunterpoint = new ArrayList<Integer>();
@@ -60,6 +63,15 @@ public class ManhuntTeamManagement implements CommandExecutor
 		{
 			
 		}
-		return true;
+		return false;
+	}
+	
+	private void updatePositions()
+	{
+		for (int i = 0; i < hunters.size(); ++i)
+		{
+			hunters.get(i).setCompassTarget(runners.get(hunterpoint.get(i)).getLocation());
+		}
+			
 	}
 }
