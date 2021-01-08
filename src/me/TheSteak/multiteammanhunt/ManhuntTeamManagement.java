@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 /*
  * TODO:
  * account for switching teams
- * 
+ * add thread for updating compasses
  */
 public class ManhuntTeamManagement implements CommandExecutor 
 {
