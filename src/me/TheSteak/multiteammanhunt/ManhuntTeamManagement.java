@@ -1,6 +1,8 @@
 package me.TheSteak.multiteammanhunt;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,6 +23,8 @@ public class ManhuntTeamManagement implements CommandExecutor
 	private ArrayList<Player> hunters, runners;
 	private ArrayList<Integer> hunterpoint;
 	
+	private Timer updating;
+	
 	public ManhuntTeamManagement (Main in)
 	{
 		plugin = in;
@@ -34,6 +38,9 @@ public class ManhuntTeamManagement implements CommandExecutor
 		hunterpoint = new ArrayList<Integer>();
 		track = false;
 		
+		updating = new Timer();
+		updating.schedule(new updateLoc(), 0, 1000);
+		
 	}
 
 	@Override
@@ -41,6 +48,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 	{
 		if ("teamhunter".equals(cmd.getName()))
 		{
+			runners.remove((Player)sender);
 			hunters.add((Player)sender);
 			if (runners.isEmpty())
 			{
@@ -53,6 +61,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		}
 		else if ("teamrunner".equals(cmd.getName()))
 		{
+			hunters.remove((Player)sender);
 			runners.add((Player)sender);
 			if (runners.size() == 1)
 			{
@@ -64,7 +73,8 @@ public class ManhuntTeamManagement implements CommandExecutor
 		}
 		else if ("switchtrack".equals(cmd.getName()))
 		{
-			
+			int point = hunters.indexOf((Player)sender);
+			hunterpoint.set(point, (hunterpoint.get(point) + 1) % runners.size());
 		}
 		else if ("startcompass".equals(cmd.getName()))
 		{
@@ -84,5 +94,17 @@ public class ManhuntTeamManagement implements CommandExecutor
 			hunters.get(i).setCompassTarget(runners.get(hunterpoint.get(i)).getLocation());
 		}
 			
+	}
+	
+	
+	private class updateLoc extends TimerTask 
+	{
+	    public void run() 
+	    {
+	       if (track)
+	       {
+	    	   updatePositions();
+	       }
+	    }
 	}
 }
