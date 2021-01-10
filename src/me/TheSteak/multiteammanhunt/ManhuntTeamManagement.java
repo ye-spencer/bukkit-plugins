@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import net.md_5.bungee.api.ChatColor;
 /*
  * TODO:
- * account for switching teams
- * add thread for updating compasses
+ * add conformations
+ * speed up compass updating
+ * 
  */
 public class ManhuntTeamManagement implements CommandExecutor 
 {
@@ -53,11 +57,14 @@ public class ManhuntTeamManagement implements CommandExecutor
 			if (runners.isEmpty())
 			{
 				hunterpoint.add(-1);
+				hunters.get(hunters.size() - 1).sendMessage("There is no one to track yet :(");
 			}
 			else
 			{
 				hunterpoint.add(0);
+				hunters.get(hunters.size() - 1).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(0).getName().toUpperCase());
 			}
+			Bukkit.broadcastMessage(sender.getName() + " has been added to the " + ChatColor.RED + "hunter team");
 		}
 		else if ("teamrunner".equals(cmd.getName()))
 		{
@@ -68,17 +75,21 @@ public class ManhuntTeamManagement implements CommandExecutor
 				for (int i = 0; i < hunters.size(); ++i)
 				{
 					hunterpoint.set(i, 0);
+					hunters.get(i).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(0).getName().toUpperCase());
 				}
 			}
+			Bukkit.broadcastMessage(sender.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
 		}
 		else if ("switchtrack".equals(cmd.getName()))
 		{
 			int point = hunters.indexOf((Player)sender);
 			hunterpoint.set(point, (hunterpoint.get(point) + 1) % runners.size());
+			sender.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(hunterpoint.get(point)).getName().toUpperCase());
 		}
 		else if ("startcompass".equals(cmd.getName()))
 		{
 			track = true;
+			Bukkit.broadcastMessage("compasses have started tracking");
 		}
 		else if ("stopcompass".equals(cmd.getName()))
 		{
