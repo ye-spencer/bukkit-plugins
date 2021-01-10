@@ -43,7 +43,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		track = false;
 		
 		updating = new Timer();
-		updating.schedule(new updateLoc(), 0, 1000);
+		updating.schedule(new updateLoc(), 0, 500);
 		
 	}
 
