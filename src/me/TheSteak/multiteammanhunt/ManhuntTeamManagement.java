@@ -13,8 +13,6 @@ import org.bukkit.entity.Player;
 import net.md_5.bungee.api.ChatColor;
 /*
  * TODO:
- * add conformations
- * speed up compass updating
  * 
  */
 public class ManhuntTeamManagement implements CommandExecutor 
