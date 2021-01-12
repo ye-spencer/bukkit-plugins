@@ -13,7 +13,9 @@ import org.bukkit.entity.Player;
 import net.md_5.bungee.api.ChatColor;
 /*
  * TODO:
- * 
+ *  update runners compasses
+ *  allow runners to switch their compasses
+ *  clean up code
  */
 public class ManhuntTeamManagement implements CommandExecutor 
 {
@@ -23,21 +25,25 @@ public class ManhuntTeamManagement implements CommandExecutor
 	private boolean track;
 	
 	private ArrayList<Player> hunters, runners;
-	private ArrayList<Integer> hunterpoint;
+	private ArrayList<Integer> hunterpoint, runnerpoint;
 	
 	private Timer updating;
 	
 	public ManhuntTeamManagement (Main in)
 	{
 		plugin = in;
+		
 		plugin.getCommand("teamhunter").setExecutor(this);
 		plugin.getCommand("teamrunner").setExecutor(this);
 		plugin.getCommand("switchtrack").setExecutor(this);
 		plugin.getCommand("startcompass").setExecutor(this);
 		plugin.getCommand("stopcompass").setExecutor(this);
+		
 		hunters = new ArrayList<Player>();
 		runners = new ArrayList<Player>();
 		hunterpoint = new ArrayList<Integer>();
+		runnerpoint = new ArrayList<Integer>();
+		
 		track = false;
 		
 		updating = new Timer();
@@ -68,6 +74,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		{
 			hunters.remove((Player)sender);
 			runners.add((Player)sender);
+			
 			if (runners.size() == 1)
 			{
 				for (int i = 0; i < hunters.size(); ++i)
@@ -75,14 +82,30 @@ public class ManhuntTeamManagement implements CommandExecutor
 					hunterpoint.set(i, 0);
 					hunters.get(i).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(0).getName().toUpperCase());
 				}
+				runnerpoint.add(-1);
+				sender.sendMessage("There is no teammates to track");
+			}
+			else if (runners.size() == 2)
+			{
+				runnerpoint.set(0, 1);
+				runnerpoint.set(1, 0);
+				runners.get(0).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + 
+						" " + runners.get(1).getName().toUpperCase() + 
+						" Distance " + runners.get(0).getLocation().distance(runners.get(1).getLocation()));
+				runners.get(1).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + 
+						" " + runners.get(0).getName().toUpperCase() + 
+						" Distance " + runners.get(0).getLocation().distance(runners.get(1).getLocation()));
 			}
 			Bukkit.broadcastMessage(sender.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
 		}
 		else if ("switchtrack".equals(cmd.getName()))
 		{
 			int point = hunters.indexOf((Player)sender);
-			hunterpoint.set(point, (hunterpoint.get(point) + 1) % runners.size());
-			sender.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(hunterpoint.get(point)).getName().toUpperCase());
+			if (point != -1)
+			{
+				hunterpoint.set(point, (hunterpoint.get(point) + 1) % runners.size());
+				sender.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(hunterpoint.get(point)).getName().toUpperCase());
+			}
 		}
 		else if ("startcompass".equals(cmd.getName()))
 		{
@@ -101,8 +124,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		for (int i = 0; i < hunters.size(); ++i)
 		{
 			hunters.get(i).setCompassTarget(runners.get(hunterpoint.get(i)).getLocation());
-		}
-			
+		}		
 	}
 	
 	
