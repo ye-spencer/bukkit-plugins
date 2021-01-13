@@ -106,6 +106,19 @@ public class ManhuntTeamManagement implements CommandExecutor
 				hunterpoint.set(point, (hunterpoint.get(point) + 1) % runners.size());
 				sender.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(hunterpoint.get(point)).getName().toUpperCase());
 			}
+			point = runners.indexOf((Player)sender);
+			if (point != -1)
+			{
+				int i = runnerpoint.get(point);
+				if (i + 1 == point)
+				{
+					runnerpoint.set(point, (i + 2) % runners.size());
+				}
+				else
+				{
+					runnerpoint.set(point, (i + 1) % runners.size());
+				}
+			}
 		}
 		else if ("startcompass".equals(cmd.getName()))
 		{
