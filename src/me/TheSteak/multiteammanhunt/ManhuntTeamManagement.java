@@ -13,9 +13,10 @@ import org.bukkit.entity.Player;
 import net.md_5.bungee.api.ChatColor;
 /*
  * TODO:
- *  update runners compasses
- *  allow runners to switch their compasses
  *  clean up code
+ *  
+ *  ERROR:
+ *  compasses do not track players, only spawn locations
  */
 public class ManhuntTeamManagement implements CommandExecutor 
 {
@@ -69,6 +70,9 @@ public class ManhuntTeamManagement implements CommandExecutor
 				hunters.get(hunters.size() - 1).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(0).getName().toUpperCase());
 			}
 			Bukkit.broadcastMessage(sender.getName() + " has been added to the " + ChatColor.RED + "hunter team");
+			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + runners.toString());
+			Bukkit.broadcastMessage(ChatColor.BLUE + "Hunter Team " + hunters.toString());
+			return true;
 		}
 		else if ("teamrunner".equals(cmd.getName()))
 		{
@@ -83,7 +87,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 					hunters.get(i).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(0).getName().toUpperCase());
 				}
 				runnerpoint.add(-1);
-				sender.sendMessage("There is no teammates to track");
+				sender.sendMessage("There is no teammates to track (yet)");
 			}
 			else if (runners.size() == 2)
 			{
@@ -97,6 +101,10 @@ public class ManhuntTeamManagement implements CommandExecutor
 						" Distance " + runners.get(0).getLocation().distance(runners.get(1).getLocation()));
 			}
 			Bukkit.broadcastMessage(sender.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
+			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + runners.toString());
+			Bukkit.broadcastMessage(ChatColor.BLUE + "Hunter Team " + hunters.toString());
+			return true;
+			
 		}
 		else if ("switchtrack".equals(cmd.getName()))
 		{
@@ -123,11 +131,14 @@ public class ManhuntTeamManagement implements CommandExecutor
 		else if ("startcompass".equals(cmd.getName()))
 		{
 			track = true;
-			Bukkit.broadcastMessage("compasses have started tracking");
+			Bukkit.broadcastMessage("compasses have started updating [" + track + "]");
+			return true;
 		}
 		else if ("stopcompass".equals(cmd.getName()))
 		{
 			track = false;
+			Bukkit.broadcastMessage("compasses have stopped updating [" + track + "]");
+			return true;
 		}
 		return false;
 	}
@@ -137,7 +148,11 @@ public class ManhuntTeamManagement implements CommandExecutor
 		for (int i = 0; i < hunters.size(); ++i)
 		{
 			hunters.get(i).setCompassTarget(runners.get(hunterpoint.get(i)).getLocation());
-		}		
+		}
+		for (int i = 0; i < runners.size(); ++i)
+		{
+			runners.get(i).setCompassTarget(runners.get(runnerpoint.get(i)).getLocation());
+		}
 	}
 	
 	
