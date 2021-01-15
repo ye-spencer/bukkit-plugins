@@ -55,52 +55,53 @@ public class ManhuntTeamManagement implements CommandExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] other) 
 	{
+		Player p = (Player)sender;
 		if ("teamhunter".equals(cmd.getName()))
 		{
-			runners.remove((Player)sender);
-			hunters.add((Player)sender);
+			runners.remove(p);
+			hunters.add(p);
 			if (runners.isEmpty())
 			{
 				hunterpoint.add(-1);
-				hunters.get(hunters.size() - 1).sendMessage("There is no one to track yet :(");
+				p.sendMessage("There is no one to track yet :(");
 			}
 			else
 			{
 				hunterpoint.add(0);
-				hunters.get(hunters.size() - 1).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(0).getName().toUpperCase());
+				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(0).getName().toUpperCase());
 			}
-			Bukkit.broadcastMessage(sender.getName() + " has been added to the " + ChatColor.RED + "hunter team");
+			Bukkit.broadcastMessage(p.getName() + " has been added to the " + ChatColor.RED + "hunter team");
 			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + runners.toString());
 			Bukkit.broadcastMessage(ChatColor.BLUE + "Hunter Team " + hunters.toString());
 			return true;
 		}
 		else if ("teamrunner".equals(cmd.getName()))
 		{
-			hunters.remove((Player)sender);
-			runners.add((Player)sender);
+			hunters.remove(p);
+			runners.add(p);
 			
 			if (runners.size() == 1)
 			{
 				for (int i = 0; i < hunters.size(); ++i)
 				{
 					hunterpoint.set(i, 0);
-					hunters.get(i).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(0).getName().toUpperCase());
+					hunters.get(i).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + p.getName().toUpperCase());
 				}
 				runnerpoint.add(-1);
-				sender.sendMessage("There is no teammates to track (yet)");
+				p.sendMessage("There is no teammates to track (yet)");
 			}
 			else if (runners.size() == 2)
 			{
 				runnerpoint.set(0, 1);
 				runnerpoint.set(1, 0);
 				runners.get(0).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + 
-						" " + runners.get(1).getName().toUpperCase() + 
-						" Distance " + runners.get(0).getLocation().distance(runners.get(1).getLocation()));
-				runners.get(1).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + 
+						" " + p.getName().toUpperCase() + 
+						" Distance " + runners.get(0).getLocation().distance(p.getLocation()));
+				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + 
 						" " + runners.get(0).getName().toUpperCase() + 
-						" Distance " + runners.get(0).getLocation().distance(runners.get(1).getLocation()));
+						" Distance " + runners.get(0).getLocation().distance(runners.get(0).getLocation()));
 			}
-			Bukkit.broadcastMessage(sender.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
+			Bukkit.broadcastMessage(p.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
 			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + runners.toString());
 			Bukkit.broadcastMessage(ChatColor.BLUE + "Hunter Team " + hunters.toString());
 			return true;
@@ -108,13 +109,13 @@ public class ManhuntTeamManagement implements CommandExecutor
 		}
 		else if ("switchtrack".equals(cmd.getName()))
 		{
-			int point = hunters.indexOf((Player)sender);
+			int point = hunters.indexOf(p);
 			if (point != -1)
 			{
 				hunterpoint.set(point, (hunterpoint.get(point) + 1) % runners.size());
-				sender.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(hunterpoint.get(point)).getName().toUpperCase());
+				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(hunterpoint.get(point)).getName().toUpperCase());
 			}
-			point = runners.indexOf((Player)sender);
+			point = runners.indexOf(p);
 			if (point != -1)
 			{
 				int i = runnerpoint.get(point);
