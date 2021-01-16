@@ -72,14 +72,13 @@ public class ManhuntTeamManagement implements CommandExecutor
 			}
 			Bukkit.broadcastMessage(p.getName() + " has been added to the " + ChatColor.RED + "hunter team");
 			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + runners.toString());
-			Bukkit.broadcastMessage(ChatColor.BLUE + "Hunter Team " + hunters.toString());
+			Bukkit.broadcastMessage(ChatColor.RED + "Hunter Team " + hunters.toString());
 			return true;
 		}
 		else if ("teamrunner".equals(cmd.getName()))
 		{
 			hunters.remove(p);
-			runners.add(p);
-			
+			runners.add(p);	
 			if (runners.size() == 1)
 			{
 				for (int i = 0; i < hunters.size(); ++i)
@@ -103,7 +102,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 			}
 			Bukkit.broadcastMessage(p.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
 			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + runners.toString());
-			Bukkit.broadcastMessage(ChatColor.BLUE + "Hunter Team " + hunters.toString());
+			Bukkit.broadcastMessage(ChatColor.RED + "Hunter Team " + hunters.toString());
 			return true;
 			
 		}
@@ -163,6 +162,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 	    {
 	       if (track)
 	       {
+	    	   Bukkit.broadcastMessage("updated");
 	    	   updatePositions();
 	       }
 	    }
