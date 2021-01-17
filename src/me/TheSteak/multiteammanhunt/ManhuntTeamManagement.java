@@ -14,6 +14,8 @@ import net.md_5.bungee.api.ChatColor;
 /*
  * TODO:
  *  clean up code
+ *  catch errors
+ *  somehow make the updating happen more than once
  *  
  *  ERROR:
  *  compasses do not track players, only spawn locations
@@ -48,7 +50,18 @@ public class ManhuntTeamManagement implements CommandExecutor
 		track = false;
 		
 		updating = new Timer();
-		updating.schedule(new updateLoc(), 0, 500);
+		updating.scheduleAtFixedRate(new TimerTask() 
+		{
+			@Override
+			public void run() 
+			{
+				if (track)
+				{
+					Bukkit.broadcastMessage("updated");
+					updatePositions();
+				}
+			}
+		}, 1000, 500);
 		
 	}
 
@@ -156,15 +169,4 @@ public class ManhuntTeamManagement implements CommandExecutor
 	}
 	
 	
-	private class updateLoc extends TimerTask 
-	{
-	    public void run() 
-	    {
-	       if (track)
-	       {
-	    	   Bukkit.broadcastMessage("updated");
-	    	   updatePositions();
-	       }
-	    }
-	}
 }
