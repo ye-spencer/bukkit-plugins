@@ -61,7 +61,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 					updatePositions();
 				}
 			}
-		}, 1000, 500);
+		}, 1000, 1000);
 		
 	}
 
