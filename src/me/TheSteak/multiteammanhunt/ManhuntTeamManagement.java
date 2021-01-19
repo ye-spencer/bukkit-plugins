@@ -1,8 +1,6 @@
 package me.TheSteak.multiteammanhunt;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -30,7 +28,6 @@ public class ManhuntTeamManagement implements CommandExecutor
 	private ArrayList<Player> hunters, runners;
 	private ArrayList<Integer> hunterpoint, runnerpoint;
 	
-	private Timer updating;
 	
 	public ManhuntTeamManagement (Main in)
 	{
@@ -49,22 +46,8 @@ public class ManhuntTeamManagement implements CommandExecutor
 		
 		track = false;
 		
-		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new updateClass(), 500, 500);
+		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new updateClass(), 1, 10);
 		
-		updating = new Timer();
-		updating.scheduleAtFixedRate(new TimerTask() 
-		{
-			@Override
-			public void run() 
-			{
-				Bukkit.broadcastMessage("trying to update");
-				if (track)
-				{
-					Bukkit.broadcastMessage("updated");
-					updatePositions();
-				}
-			}
-		}, 1000, 1000);
 		
 	}
 
@@ -177,7 +160,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		@Override
 		public void run() 
 		{
-			Bukkit.broadcastMessage("updated");
+			Bukkit.broadcastMessage("thread updated");
 			updatePositions();
 		}
 		
