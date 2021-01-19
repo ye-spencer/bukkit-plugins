@@ -49,12 +49,15 @@ public class ManhuntTeamManagement implements CommandExecutor
 		
 		track = false;
 		
+		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new updateClass(), 500, 500);
+		
 		updating = new Timer();
 		updating.scheduleAtFixedRate(new TimerTask() 
 		{
 			@Override
 			public void run() 
 			{
+				Bukkit.broadcastMessage("trying to update");
 				if (track)
 				{
 					Bukkit.broadcastMessage("updated");
@@ -166,6 +169,18 @@ public class ManhuntTeamManagement implements CommandExecutor
 		{
 			runners.get(i).setCompassTarget(runners.get(runnerpoint.get(i)).getLocation());
 		}
+	}
+	
+	private class updateClass implements Runnable
+	{
+
+		@Override
+		public void run() 
+		{
+			Bukkit.broadcastMessage("updated");
+			updatePositions();
+		}
+		
 	}
 	
 	
