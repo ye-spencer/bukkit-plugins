@@ -146,11 +146,13 @@ public class ManhuntTeamManagement implements CommandExecutor
 	{
 		for (int i = 0; i < hunters.size(); ++i)
 		{
-			hunters.get(i).setCompassTarget(runners.get(hunterpoint.get(i)).getLocation());
+			int k = hunterpoint.get(i);
+			if (k < 0) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
 		}
 		for (int i = 0; i < runners.size(); ++i)
 		{
-			runners.get(i).setCompassTarget(runners.get(runnerpoint.get(i)).getLocation());
+			int k = hunterpoint.get(i);
+			if (k < 0) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
 		}
 	}
 	
