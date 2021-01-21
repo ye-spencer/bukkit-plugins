@@ -13,7 +13,6 @@ import net.md_5.bungee.api.ChatColor;
  * TODO:
  *  clean up code
  *  catch errors
- *  somehow make the updating happen more than once
  *  
  *  ERROR:
  *  compasses do not track players, only spawn locations
@@ -22,8 +21,6 @@ public class ManhuntTeamManagement implements CommandExecutor
 {
 	
 	private Main plugin;
-	
-	private boolean track;
 	
 	private ArrayList<Player> hunters, runners;
 	private ArrayList<Integer> hunterpoint, runnerpoint;
@@ -43,8 +40,6 @@ public class ManhuntTeamManagement implements CommandExecutor
 		runners = new ArrayList<Player>();
 		hunterpoint = new ArrayList<Integer>();
 		runnerpoint = new ArrayList<Integer>();
-		
-		track = false;
 		
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new updateClass(), 1, 10);
 		
@@ -126,18 +121,6 @@ public class ManhuntTeamManagement implements CommandExecutor
 					runnerpoint.set(point, (i + 1) % runners.size());
 				}
 			}
-		}
-		else if ("startcompass".equals(cmd.getName()))
-		{
-			track = true;
-			Bukkit.broadcastMessage("compasses have started updating [" + track + "]");
-			return true;
-		}
-		else if ("stopcompass".equals(cmd.getName()))
-		{
-			track = false;
-			Bukkit.broadcastMessage("compasses have stopped updating [" + track + "]");
-			return true;
 		}
 		return false;
 	}

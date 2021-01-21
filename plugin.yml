@@ -17,10 +17,4 @@ commands:
   switchtrack:
     aliases: [switch]
     description: /switch as hunter to switch who is being tracked
-  startcompass:
-    aliases: [startcp]
-    description: /startcp to start updating the hunters compasses
-  stopcompass:
-    aliases: [stopcp]
-    description: /stopcp to stop updating the hunters compasses
     
