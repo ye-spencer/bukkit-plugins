@@ -42,8 +42,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		runnerpoint = new ArrayList<Integer>();
 		
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new updateClass(), 1, 10);
-		
-		
+			
 	}
 
 	@Override
@@ -52,7 +51,16 @@ public class ManhuntTeamManagement implements CommandExecutor
 		Player p = (Player)sender;
 		if ("teamhunter".equals(cmd.getName()))
 		{
-			runners.remove(p);
+			if (hunters.contains(p))
+			{
+				p.sendMessage("You are already on the " + ChatColor.RED + "hunter team");
+				return true;
+			}
+			if (runners.contains(p))
+			{
+				runnerpoint.remove(runners.indexOf(p));
+				runners.remove(p);
+			}
 			hunters.add(p);
 			if (runners.isEmpty())
 			{
@@ -71,7 +79,16 @@ public class ManhuntTeamManagement implements CommandExecutor
 		}
 		else if ("teamrunner".equals(cmd.getName()))
 		{
-			hunters.remove(p);
+			if (runners.contains(p))
+			{
+				p.sendMessage("You are already on the " + ChatColor.BLUE + "runner team");
+				return true;
+			}
+			if (hunters.contains(p))
+			{
+				hunterpoint.remove(hunters.indexOf(p));
+				hunters.remove(p);
+			}
 			runners.add(p);	
 			if (runners.size() == 1)
 			{
@@ -141,7 +158,6 @@ public class ManhuntTeamManagement implements CommandExecutor
 	
 	private class updateClass implements Runnable
 	{
-
 		@Override
 		public void run() 
 		{
