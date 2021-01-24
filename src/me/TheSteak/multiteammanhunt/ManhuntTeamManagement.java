@@ -161,7 +161,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		@Override
 		public void run() 
 		{
-			Bukkit.broadcastMessage("thread updated");
+			Bukkit.broadcastMessage("compass updated");
 			updatePositions();
 		}
 		
