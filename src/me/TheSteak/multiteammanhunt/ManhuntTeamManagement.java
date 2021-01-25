@@ -15,7 +15,8 @@ import net.md_5.bungee.api.ChatColor;
  *  catch errors
  *  
  *  ERROR:
- *  compasses do not track players, only spawn locations
+ *  not updating other people on switch team
+ *  cant have to runners yet
  */
 public class ManhuntTeamManagement implements CommandExecutor 
 {
@@ -33,21 +34,24 @@ public class ManhuntTeamManagement implements CommandExecutor
 		plugin.getCommand("teamhunter").setExecutor(this);
 		plugin.getCommand("teamrunner").setExecutor(this);
 		plugin.getCommand("switchtrack").setExecutor(this);
-		plugin.getCommand("startcompass").setExecutor(this);
-		plugin.getCommand("stopcompass").setExecutor(this);
 		
 		hunters = new ArrayList<Player>();
 		runners = new ArrayList<Player>();
 		hunterpoint = new ArrayList<Integer>();
 		runnerpoint = new ArrayList<Integer>();
 		
-		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new updateClass(), 1, 10);
+		Bukkit.getServer().broadcastMessage("started plugin");
+		
+		Bukkit.getServer().getScheduler().runTaskTimer(plugin, new updateClass(), 1, 10);
+		
+		Bukkit.getServer().broadcastMessage("timer started");
 			
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] other) 
 	{
+		Bukkit.getServer().broadcastMessage("command called");
 		Player p = (Player)sender;
 		if ("teamhunter".equals(cmd.getName()))
 		{
@@ -60,6 +64,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 			{
 				runnerpoint.remove(runners.indexOf(p));
 				runners.remove(p);
+				//TODO update other peopole
 			}
 			hunters.add(p);
 			if (runners.isEmpty())
@@ -73,8 +78,8 @@ public class ManhuntTeamManagement implements CommandExecutor
 				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN  + runners.get(0).getName().toUpperCase());
 			}
 			Bukkit.broadcastMessage(p.getName() + " has been added to the " + ChatColor.RED + "hunter team");
-			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + runners.toString());
-			Bukkit.broadcastMessage(ChatColor.RED + "Hunter Team " + hunters.toString());
+			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
+			Bukkit.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
 			return true;
 		}
 		else if ("teamrunner".equals(cmd.getName()))
@@ -88,6 +93,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 			{
 				hunterpoint.remove(hunters.indexOf(p));
 				hunters.remove(p);
+				//TODO update other people
 			}
 			runners.add(p);	
 			if (runners.size() == 1)
@@ -112,8 +118,8 @@ public class ManhuntTeamManagement implements CommandExecutor
 						" Distance " + runners.get(0).getLocation().distance(runners.get(0).getLocation()));
 			}
 			Bukkit.broadcastMessage(p.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
-			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + runners.toString());
-			Bukkit.broadcastMessage(ChatColor.RED + "Hunter Team " + hunters.toString());
+			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
+			Bukkit.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
 			return true;
 			
 		}
@@ -144,16 +150,26 @@ public class ManhuntTeamManagement implements CommandExecutor
 	
 	private void updatePositions()
 	{
-		for (int i = 0; i < hunters.size(); ++i)
+		for (int i = 0; i < hunters.size(); i++)
 		{
 			int k = hunterpoint.get(i);
-			if (k > 0) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
+			if (k >= 0) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
 		}
-		for (int i = 0; i < runners.size(); ++i)
+		for (int i = 0; i < runners.size(); i++)
 		{
 			int k = runnerpoint.get(i);
-			if (k > 0) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
+			if (k >= 0) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
 		}
+	}
+	
+	private String playerArrToString(ArrayList<Player> arr)
+	{
+		StringBuilder s = new StringBuilder();
+		for (Player p : arr)
+		{
+			s.append(p.getName() + " ");
+		}
+		return s.toString();
 	}
 	
 	private class updateClass implements Runnable
@@ -161,10 +177,8 @@ public class ManhuntTeamManagement implements CommandExecutor
 		@Override
 		public void run() 
 		{
-			Bukkit.broadcastMessage("compass updated");
 			updatePositions();
 		}
-		
 	}
 	
 	
