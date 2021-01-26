@@ -62,9 +62,19 @@ public class ManhuntTeamManagement implements CommandExecutor
 			}
 			if (runners.contains(p))
 			{
-				runnerpoint.remove(runners.indexOf(p));
-				runners.remove(p);
-				//TODO update other peopole
+				int i = runners.indexOf(p);
+				runnerpoint.remove(i);
+				runners.remove(i);
+				for (int j = 0; j < hunterpoint.size(); j++)
+				{
+					if (hunterpoint.get(j) == i)
+					{
+						int k = runners.size();
+						hunterpoint.set(j, k);
+						if (k < 0) hunters.get(j).sendMessage("There is no one to track");
+						else hunters.get(j).sendMessage("Your compass is now pointing to " + ChatColor.GREEN  + runners.get(j).getName().toUpperCase());
+					}
+				}
 			}
 			hunters.add(p);
 			if (runners.isEmpty())
