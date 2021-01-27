@@ -15,7 +15,6 @@ import net.md_5.bungee.api.ChatColor;
  *  catch errors
  *  
  *  ERROR:
- *  not updating other people on switch team
  *  cant have to runners yet
  */
 public class ManhuntTeamManagement implements CommandExecutor 
@@ -42,7 +41,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		
 		Bukkit.getServer().broadcastMessage("started plugin");
 		
-		Bukkit.getServer().getScheduler().runTaskTimer(plugin, new updateClass(), 1, 10);
+		Bukkit.getServer().getScheduler().runTaskTimer(plugin, new updateClass(), 1, 8);
 		
 		Bukkit.getServer().broadcastMessage("timer started");
 			
@@ -103,7 +102,6 @@ public class ManhuntTeamManagement implements CommandExecutor
 			{
 				hunterpoint.remove(hunters.indexOf(p));
 				hunters.remove(p);
-				//TODO update other people
 			}
 			runners.add(p);	
 			if (runners.size() == 1)
