@@ -69,8 +69,8 @@ public class ManhuntTeamManagement implements CommandExecutor
 					if (hunterpoint.get(j) == i)
 					{
 						int k = runners.size();
-						hunterpoint.set(j, k);
-						if (k < 0) hunters.get(j).sendMessage("There is no one to track");
+						hunterpoint.set(j, k - 1);
+						if (k <= 0) hunters.get(j).sendMessage("There is no one to track");
 						else hunters.get(j).sendMessage("Your compass is now pointing to " + ChatColor.GREEN  + runners.get(j).getName().toUpperCase());
 					}
 				}
@@ -152,6 +152,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 					runnerpoint.set(point, (i + 1) % runners.size());
 				}
 			}
+			return true;
 		}
 		return false;
 	}
