@@ -3,6 +3,7 @@ package me.TheSteak.multiteammanhunt;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,6 +26,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 	private ArrayList<Player> hunters, runners;
 	private ArrayList<Integer> hunterpoint, runnerpoint;
 	
+	private Server server;
 	
 	public ManhuntTeamManagement (Main in)
 	{
@@ -39,18 +41,21 @@ public class ManhuntTeamManagement implements CommandExecutor
 		hunterpoint = new ArrayList<Integer>();
 		runnerpoint = new ArrayList<Integer>();
 		
-		Bukkit.getServer().broadcastMessage("started plugin");
+		server = Bukkit.getServer();
 		
-		Bukkit.getServer().getScheduler().runTaskTimer(plugin, new updateClass(), 1, 8);
+		server.broadcastMessage("started plugin");
 		
-		Bukkit.getServer().broadcastMessage("timer started");
+		server.getScheduler().runTaskTimer(plugin, new updateClass(), 1, 8);
+		
+		server.broadcastMessage("timer started");
+		
 			
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] other) 
 	{
-		Bukkit.getServer().broadcastMessage("command called");
+		server.broadcastMessage("command called");
 		Player p = (Player)sender;
 		if ("teamhunter".equals(cmd.getName()))
 		{
@@ -86,9 +91,9 @@ public class ManhuntTeamManagement implements CommandExecutor
 				hunterpoint.add(0);
 				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN  + runners.get(0).getName().toUpperCase());
 			}
-			Bukkit.broadcastMessage(p.getName() + " has been added to the " + ChatColor.RED + "hunter team");
-			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
-			Bukkit.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			server.broadcastMessage(p.getName() + " has been added to the " + ChatColor.RED + "hunter team");
+			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
+			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
 			return true;
 		}
 		else if ("teamrunner".equals(cmd.getName()))
@@ -125,9 +130,9 @@ public class ManhuntTeamManagement implements CommandExecutor
 						" " + runners.get(0).getName().toUpperCase() + 
 						" Distance " + runners.get(0).getLocation().distance(runners.get(0).getLocation()));
 			}
-			Bukkit.broadcastMessage(p.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
-			Bukkit.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
-			Bukkit.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			server.broadcastMessage(p.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
+			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
+			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
 			return true;
 			
 		}
