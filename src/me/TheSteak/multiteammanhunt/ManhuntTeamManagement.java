@@ -148,14 +148,9 @@ public class ManhuntTeamManagement implements CommandExecutor
 			if (point != -1)
 			{
 				int i = runnerpoint.get(point);
-				if (i + 1 == point)
-				{
-					runnerpoint.set(point, (i + 2) % runners.size());
-				}
-				else
-				{
-					runnerpoint.set(point, (i + 1) % runners.size());
-				}
+				if (i + 1 == point) runnerpoint.set(point, (i + 2) % runners.size());
+				else runnerpoint.set(point, (i + 1) % runners.size());
+
 			}
 			return true;
 		}
