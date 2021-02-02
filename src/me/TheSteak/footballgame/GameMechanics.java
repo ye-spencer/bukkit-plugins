@@ -1,5 +1,7 @@
 package me.TheSteak.footballgame;
 
+import java.util.ArrayList;
+
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,12 +18,17 @@ public class GameMechanics implements CommandExecutor, Listener
 	private Server server;
 	private boolean enabled;
 	
+	private ArrayList<Player> a, b;
+	
 	public GameMechanics (Main in)
 	{
 		enabled = false;
 		plugin = in;
 		
 		server = plugin.getServer();
+		
+		a = new ArrayList<Player>();
+		b = new ArrayList<Player>();
 		
 		plugin.getCommand("startfootballgame").setExecutor(this);
 		plugin.getCommand("endfootballgame").setExecutor(this);
@@ -32,11 +39,13 @@ public class GameMechanics implements CommandExecutor, Listener
 	{
 		if (command.getName() == "startfootballgame")
 		{
+			server.broadcastMessage("game started");
 			enabled = true;
 			return true;
 		}
 		else if (command.getName() == "endfootballgame")
 		{
+			server.broadcastMessage("game ended");
 			enabled = false;
 			return true;
 		}
