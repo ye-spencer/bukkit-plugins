@@ -90,7 +90,7 @@ public class GameMechanics implements CommandExecutor, Listener
 	{
 		if (enabled)
 		{
-			if (event.getEntity() instanceof Player)
+			if (event.getEntity() instanceof Player && event.getEntity().getLastDamageCause() instanceof Player)
 			{
 				//TODO deal with what happens on hit
 			}
