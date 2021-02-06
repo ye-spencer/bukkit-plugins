@@ -92,6 +92,16 @@ public class GameMechanics implements CommandExecutor, Listener
 		{
 			if (event.getEntity() instanceof Player && event.getEntity().getLastDamageCause() instanceof Player)
 			{
+				Player receiver = (Player)event.getEntity();
+				Player attacker = (Player)event.getEntity().getLastDamageCause();
+				if (a.contains(receiver) && b.contains(attacker) ||b.contains(receiver) && a.contains(attacker))
+				{
+					
+				}
+				else
+				{
+					//TODO ??????
+				}
 				//TODO deal with what happens on hit
 			}
         }
