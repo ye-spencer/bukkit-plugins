@@ -12,6 +12,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+import net.md_5.bungee.api.ChatColor;
+
 public class GameMechanics implements CommandExecutor, Listener
 {
 	
@@ -57,29 +59,37 @@ public class GameMechanics implements CommandExecutor, Listener
 		else if (command.getName() == "teama")
 		{
 			if (others.length > 1) return false;
+			Player target;
 			if (others.length == 1)
 			{
-				Player target = Bukkit.getPlayer(others[0]);
-				//TODO add target to team
+				target = Bukkit.getPlayer(others[0]);
 			}
 			else
 			{
-				//TODO add sender to team
+				target = (Player)sender;
 			}
+			b.remove(target);
+			a.add(target);
+			server.broadcastMessage("Team A: " + ChatColor.BLUE + listPlayers(a) + 
+					"Team B: " + ChatColor.RED + listPlayers(b));
 			return true;
 		}
 		else if (command.getName() == "teamb")
 		{
 			if (others.length > 1) return false;
+			Player target;
 			if (others.length == 1)
 			{
-				Player target = Bukkit.getPlayer(others[0]);
-				//TODO add target to team
+				target = Bukkit.getPlayer(others[0]);
 			}
 			else
 			{
-				//TODO add sender to team
+				target = (Player)sender;
 			}
+			a.remove(target);
+			b.add(target);
+			server.broadcastMessage("Team A: " + ChatColor.BLUE + listPlayers(a) + 
+					"Team B: " + ChatColor.RED + listPlayers(b));
 			return true;
 		}
 		return false;
@@ -94,9 +104,9 @@ public class GameMechanics implements CommandExecutor, Listener
 			{
 				Player receiver = (Player)event.getEntity();
 				Player attacker = (Player)event.getEntity().getLastDamageCause();
-				if (a.contains(receiver) && b.contains(attacker) ||b.contains(receiver) && a.contains(attacker))
+				if (a.contains(receiver) && b.contains(attacker) || b.contains(receiver) && a.contains(attacker))
 				{
-					
+					//TODO figureout what to do
 				}
 				else
 				{
@@ -106,5 +116,10 @@ public class GameMechanics implements CommandExecutor, Listener
 			}
         }
     }
+	
+	private String listPlayers(ArrayList<Player> arr)
+	{
+		return "";
+	}
 
 }
