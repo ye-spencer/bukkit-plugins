@@ -1,1 +1,15 @@
+name: Football Game
+version: 0.0.1
+author: TheSteak
+main: me.TheSteak.footballgame.Main
+description: A plugin that allows for the easy execution of a football game me and my friends came up with
 
+commands:
+  startfootballgame:
+    description: starts the game
+  endfootballgame:
+    description: ends the game
+  teama:
+    description: sets the sender to team a (or the player passed in after)
+  teamb:
+    description: sets the sender to team b (or the player passed in after)
