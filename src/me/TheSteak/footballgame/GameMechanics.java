@@ -110,18 +110,19 @@ public class GameMechanics implements CommandExecutor, Listener
 				{
 					//TODO figureout what to do
 				}
-				else
-				{
-					//TODO ??????
-				}
-				//TODO deal with what happens on hit
 			}
         }
     }
 	
 	private String listPlayers(ArrayList<Player> arr)
 	{
-		return "";
+		StringBuilder sb = new StringBuilder();
+		for (Player p : arr)
+		{
+			sb.append(p.getName() + ", ");
+		}
+		sb.delete(sb.length() - 2, sb.length());
+		return sb.toString();
 	}
 
 }
