@@ -150,7 +150,6 @@ public class ManhuntTeamManagement implements CommandExecutor
 				int i = runnerpoint.get(point);
 				if (i + 1 == point) runnerpoint.set(point, (i + 2) % runners.size());
 				else runnerpoint.set(point, (i + 1) % runners.size());
-
 			}
 			return true;
 		}
@@ -175,9 +174,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 	{
 		StringBuilder s = new StringBuilder();
 		for (Player p : arr)
-		{
 			s.append(p.getName() + " ");
-		}
 		return s.toString();
 	}
 	
