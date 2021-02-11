@@ -24,6 +24,9 @@ public class GameMechanics implements CommandExecutor, Listener
 	/*
 	 * Ideas:
 	 * Add scoreboard
+	 * 
+	 * ERRORS:
+	 * None
 	 */
 	
 	private ArrayList<Player> a, b;
@@ -49,19 +52,19 @@ public class GameMechanics implements CommandExecutor, Listener
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] others) 
 	{
 		
-		if (command.getName() == "startfootballgame")
+		if ("startfootballgame".equals(command.getName()))
 		{
 			server.broadcastMessage("game started");
 			enabled = true;
 			return true;
 		}
-		else if (command.getName() == "endfootballgame")
+		else if ("endfootballgame".equals(command.getName()))
 		{
 			server.broadcastMessage("game ended");
 			enabled = false;
 			return true;
 		}
-		else if (command.getName() == "teama")
+		else if ("teama".equals(command.getName()))
 		{
 			if (others.length > 1) return false;
 			Player target;
@@ -79,7 +82,7 @@ public class GameMechanics implements CommandExecutor, Listener
 					"Team B: " + ChatColor.RED + listPlayers(b));
 			return true;
 		}
-		else if (command.getName() == "teamb")
+		else if ("teamb".equals(command.getName()))
 		{
 			if (others.length > 1) return false;
 			Player target;
