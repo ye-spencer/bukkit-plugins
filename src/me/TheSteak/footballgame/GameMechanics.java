@@ -21,6 +21,11 @@ public class GameMechanics implements CommandExecutor, Listener
 	private Server server;
 	private boolean enabled;
 	
+	/*
+	 * Ideas:
+	 * Add scoreboard
+	 */
+	
 	private ArrayList<Player> a, b;
 	
 	public GameMechanics (Main in)
