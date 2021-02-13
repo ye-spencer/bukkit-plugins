@@ -1,7 +1,9 @@
 package me.TheSteak.multiteammanhunt;
 
 import java.util.ArrayList;
+import java.util.logging.LogRecord;
 
+import org.apache.logging.log4j.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -12,7 +14,6 @@ import org.bukkit.entity.Player;
 import net.md_5.bungee.api.ChatColor;
 /*
  * TODO:
- *  clean up code
  *  catch errors
  *  
  *  ERROR:
@@ -48,7 +49,6 @@ public class ManhuntTeamManagement implements CommandExecutor
 		server.getScheduler().runTaskTimer(plugin, new updateClass(), 1, 8);
 		
 		server.broadcastMessage("timer started");
-		
 			
 	}
 
