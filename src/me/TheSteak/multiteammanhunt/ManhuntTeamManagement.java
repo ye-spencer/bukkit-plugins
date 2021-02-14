@@ -1,23 +1,18 @@
 package me.TheSteak.multiteammanhunt;
 
 import java.util.ArrayList;
-import java.util.logging.LogRecord;
-
-import org.apache.logging.log4j.Level;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import net.md_5.bungee.api.ChatColor;
 /*
  * TODO:
  *  catch errors
  *  
  *  ERROR:
- *  cant have to runners yet
  */
 public class ManhuntTeamManagement implements CommandExecutor 
 {
