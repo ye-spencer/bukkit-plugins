@@ -16,5 +16,5 @@ commands:
     description: /trun to set team as runner
   switchtrack:
     aliases: [switch]
-    description: /switch as hunter to switch who is being tracked
+    description: /switch as hunter (or runner) to switch who is being tracked
     
