@@ -120,10 +120,10 @@ public class ManhuntTeamManagement implements CommandExecutor
 				runnerpoint.set(1, 0);
 				runners.get(0).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + 
 						" " + p.getName().toUpperCase() + 
-						" Distance " + runners.get(0).getLocation().distance(p.getLocation()));
+						" [Distance " + runners.get(0).getLocation().distance(p.getLocation()) + "]");
 				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + 
 						" " + runners.get(0).getName().toUpperCase() + 
-						" Distance " + runners.get(0).getLocation().distance(runners.get(0).getLocation()));
+						" [Distance " + runners.get(0).getLocation().distance(runners.get(0).getLocation()) + "]");
 			}
 			server.broadcastMessage(p.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
 			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
