@@ -11,6 +11,8 @@ import org.bukkit.entity.Player;
 /*
  * TODO:
  *  catch errors
+ *  make sure multi dimension works
+ *  -checks dimension, if same then get direction
  *  
  *  ERROR:
  */
