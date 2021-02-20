@@ -73,7 +73,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 						int k = runners.size();
 						hunterpoint.set(j, k - 1);
 						if (k <= 0) hunters.get(j).sendMessage("There is no one to track");
-						else hunters.get(j).sendMessage("Your compass is now pointing to " + ChatColor.GREEN  + runners.get(j).getName().toUpperCase());
+						else hunters.get(j).sendMessage("Your compass is now pointing to " + ChatColor.GREEN  + runners.get(j).getPlayerListName().toUpperCase());
 					}
 				}
 			}
@@ -86,9 +86,9 @@ public class ManhuntTeamManagement implements CommandExecutor
 			else
 			{
 				hunterpoint.add(0);
-				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN  + runners.get(0).getName().toUpperCase());
+				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN  + runners.get(0).getPlayerListName().toUpperCase());
 			}
-			server.broadcastMessage(p.getName() + " has been added to the " + ChatColor.RED + "hunter team");
+			server.broadcastMessage(p.getPlayerListName() + " has been added to the " + ChatColor.RED + "hunter team");
 			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
 			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
 			return true;
@@ -111,7 +111,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 				for (int i = 0; i < hunters.size(); ++i)
 				{
 					hunterpoint.set(i, 0);
-					hunters.get(i).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + p.getName().toUpperCase());
+					hunters.get(i).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + p.getPlayerListName().toUpperCase());
 				}
 				runnerpoint.add(-1);
 				p.sendMessage("There is no teammates to track (yet)");
@@ -121,13 +121,13 @@ public class ManhuntTeamManagement implements CommandExecutor
 				runnerpoint.set(0, 1);
 				runnerpoint.set(1, 0);
 				runners.get(0).sendMessage("Your compass is now pointing to " + ChatColor.GREEN + 
-						" " + p.getName().toUpperCase() + 
+						" " + p.getPlayerListName().toUpperCase() + 
 						" [Distance " + runners.get(0).getLocation().distance(p.getLocation()) + "]");
 				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + 
-						" " + runners.get(0).getName().toUpperCase() + 
+						" " + runners.get(0).getPlayerListName().toUpperCase() + 
 						" [Distance " + runners.get(0).getLocation().distance(runners.get(0).getLocation()) + "]");
 			}
-			server.broadcastMessage(p.getName() + " has been added to the " + ChatColor.BLUE + "runner team");
+			server.broadcastMessage(p.getPlayerListName() + " has been added to the " + ChatColor.BLUE + "runner team");
 			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
 			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
 			return true;
@@ -139,7 +139,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 			if (point != -1)
 			{
 				hunterpoint.set(point, (hunterpoint.get(point) + 1) % runners.size());
-				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(hunterpoint.get(point)).getName().toUpperCase());
+				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN + " " + runners.get(hunterpoint.get(point)).getPlayerListName().toUpperCase());
 			}
 			point = runners.indexOf(p);
 			if (point != -1)
@@ -163,7 +163,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		for (int i = 0; i < runners.size(); i++)
 		{
 			int k = runnerpoint.get(i);
-			if (k >= 0) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
+			if (k >= 0 && hunters.get(i).getWorld().getEnvironment() == runners.get(k).getWorld().getEnvironment()) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
 		}
 	}
 	
@@ -171,7 +171,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 	{
 		StringBuilder s = new StringBuilder();
 		for (Player p : arr)
-			s.append(p.getName() + " ");
+			s.append(p.getPlayerListName() + " ");
 		return s.toString();
 	}
 	
