@@ -13,6 +13,9 @@ import org.bukkit.entity.Player;
  *  catch errors
  *  make sure multi dimension works
  *  -checks dimension, if same then get direction
+ *  - switch to lodestone, rather than compass direction
+ *   (setLodstone(yourLocation);
+setLodStoneTracked(false); // we do not want a real lodestone to be present at that location.)
  *  
  *  ERROR:
  */
@@ -158,12 +161,14 @@ public class ManhuntTeamManagement implements CommandExecutor
 		for (int i = 0; i < hunters.size(); i++)
 		{
 			int k = hunterpoint.get(i);
-			if (k >= 0) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
+			if (k >= 0 && hunters.get(i).getWorld().getEnvironment() == runners.get(k).getWorld().getEnvironment()) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
+			else hunters.get(i).setCompassTarget(null);
 		}
 		for (int i = 0; i < runners.size(); i++)
 		{
 			int k = runnerpoint.get(i);
-			if (k >= 0 && hunters.get(i).getWorld().getEnvironment() == runners.get(k).getWorld().getEnvironment()) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
+			if (k >= 0 && hunters.get(k).getWorld().getEnvironment() == runners.get(i).getWorld().getEnvironment()) runners.get(i).setCompassTarget(hunters.get(k).getLocation());
+			else runners.get(i).setCompassTarget(null);
 		}
 	}
 	
