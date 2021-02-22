@@ -16,6 +16,8 @@ import org.bukkit.entity.Player;
  *  - switch to lodestone, rather than compass direction
  *   (setLodstone(yourLocation);
 setLodStoneTracked(false); // we do not want a real lodestone to be present at that location.)
+ *  IDEA:
+ *  add scoreboard to track runner deaths
  *  
  *  ERROR:
  */
@@ -162,13 +164,11 @@ public class ManhuntTeamManagement implements CommandExecutor
 		{
 			int k = hunterpoint.get(i);
 			if (k >= 0 && hunters.get(i).getWorld().getEnvironment() == runners.get(k).getWorld().getEnvironment()) hunters.get(i).setCompassTarget(runners.get(k).getLocation());
-			else hunters.get(i).setCompassTarget(null);
 		}
 		for (int i = 0; i < runners.size(); i++)
 		{
 			int k = runnerpoint.get(i);
 			if (k >= 0 && hunters.get(k).getWorld().getEnvironment() == runners.get(i).getWorld().getEnvironment()) runners.get(i).setCompassTarget(hunters.get(k).getLocation());
-			else runners.get(i).setCompassTarget(null);
 		}
 	}
 	
