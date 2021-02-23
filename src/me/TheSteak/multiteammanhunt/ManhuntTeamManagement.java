@@ -12,10 +12,6 @@ import org.bukkit.entity.Player;
  * TODO:
  *  catch errors
  *  make sure multi dimension works
- *  -checks dimension, if same then get direction
- *  - switch to lodestone, rather than compass direction
- *   (setLodstone(yourLocation);
-setLodStoneTracked(false); // we do not want a real lodestone to be present at that location.)
  *  IDEA:
  *  add scoreboard to track runner deaths
  *  
