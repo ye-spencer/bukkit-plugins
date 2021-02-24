@@ -10,12 +10,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 /*
  * TODO:
- *  catch errors
- *  make sure multi dimension works
- *  IDEA:
- *  add scoreboard to track runner deaths
+ *   add on death
+ * None
+ * IDEA:
+ *   add scoreboard to track runner deaths
  *  
- *  ERROR:
+ * ERROR:
  */
 public class ManhuntTeamManagement implements CommandExecutor 
 {
@@ -152,6 +152,16 @@ public class ManhuntTeamManagement implements CommandExecutor
 			return true;
 		}
 		return false;
+	}
+	
+	private void createBoard(Player p)
+	{
+		
+	}
+	
+	private void updateBoard(Player p)
+	{
+		
 	}
 	
 	private void updatePositions()
