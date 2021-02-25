@@ -8,6 +8,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 /*
  * TODO:
  *   add on death
@@ -156,7 +160,11 @@ public class ManhuntTeamManagement implements CommandExecutor
 	
 	private void createBoard(Player p)
 	{
-		
+		ScoreboardManager m = Bukkit.getScoreboardManager();
+		Scoreboard board = m.getNewScoreboard();
+		Objective o = board.registerNewObjective("MultiplayerManhuntScoreboard", "", "");
+		Score score = o.getScore("Runners With Lives Left");
+		score.setScore(1);
 	}
 	
 	private void updateBoard(Player p)
