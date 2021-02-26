@@ -1,5 +1,5 @@
 name: MultiTeamManhunt
-version: 2.2.2
+version: 2.3.0
 author: TheSteak
 main: me.TheSteak.multiteammanhunt.Main
 description: A plugin that allows for tracking of different players on the speedrunner team
@@ -7,13 +7,13 @@ description: A plugin that allows for tracking of different players on the speed
 commands:
   manhuntcompass:
     aliases: [mhc]
-    description: /mhc to give self a compass
+    description: /mhc to give yourself a compass
   teamhunter:
     aliases: [thunt]
-    description: /thunt to set team as hunter
+    description: /thunt to set your team as hunter
   teamrunner:
     aliases: [trun]
-    description: /trun to set team as runner
+    description: /trun to set your team as runner
   switchtrack:
     aliases: [switch]
-    description: /switch as hunter (or runner) to switch who is being tracked
+    description: /switch as a hunter (or a runner) to switch who you are tracking
