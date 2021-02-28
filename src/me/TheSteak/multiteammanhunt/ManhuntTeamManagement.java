@@ -165,6 +165,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		Objective o = board.registerNewObjective("MultiplayerManhuntScoreboard", "", "");
 		Score score = o.getScore("Runners With Lives Left");
 		score.setScore(1);
+		p.setScoreboard(board);
 	}
 	
 	private void updateBoard(Player p)
