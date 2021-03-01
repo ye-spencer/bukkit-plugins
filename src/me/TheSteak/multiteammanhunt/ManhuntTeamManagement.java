@@ -8,6 +8,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
@@ -21,7 +23,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
  *  
  * ERROR:
  */
-public class ManhuntTeamManagement implements CommandExecutor 
+public class ManhuntTeamManagement implements CommandExecutor, Listener
 {
 	
 	private Main plugin;
@@ -52,6 +54,10 @@ public class ManhuntTeamManagement implements CommandExecutor
 		
 		server.broadcastMessage("timer started");
 			
+	}
+	
+	public void onDeath(PlayerDeathEvent event) {
+		updateBoard(event.getEntity());
 	}
 
 	@Override
