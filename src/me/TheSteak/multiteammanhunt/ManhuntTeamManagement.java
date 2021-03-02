@@ -58,6 +58,14 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	
 	public void onDeath(PlayerDeathEvent event) {
 		updateBoard(event.getEntity());
+		for (Player p : runners)
+		{
+			//TODO Update their scoreboard
+		}
+		for (Player p : hunters)
+		{
+			//TODO Update their scoreboard
+		}
 	}
 
 	@Override
