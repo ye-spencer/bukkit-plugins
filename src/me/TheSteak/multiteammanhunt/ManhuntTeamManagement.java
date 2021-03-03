@@ -57,14 +57,14 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	}
 	
 	public void onDeath(PlayerDeathEvent event) {
-		updateBoard(event.getEntity());
+		Scoreboard b = updateBoard(event.getEntity());
 		for (Player p : runners)
 		{
-			//TODO Update their scoreboard
+			p.setScoreboard(b);
 		}
 		for (Player p : hunters)
 		{
-			//TODO Update their scoreboard
+			p.setScoreboard(b);
 		}
 	}
 
@@ -182,9 +182,9 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		p.setScoreboard(board);
 	}
 	
-	private void updateBoard(Player p)
+	private Scoreboard updateBoard(Player p)
 	{
-		
+		return null;
 	}
 	
 	private void updatePositions()
