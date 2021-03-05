@@ -16,10 +16,10 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 /*
  * TODO:
- *   add on death
+ *   update board
+ *   set board to people on team join
  * None
  * IDEA:
- *   add scoreboard to track runner deaths
  *  
  * ERROR:
  */
@@ -32,6 +32,8 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	private ArrayList<Integer> hunterpoint, runnerpoint;
 	
 	private Server server;
+	
+	private Scoreboard board;
 	
 	public ManhuntTeamManagement (Main in)
 	{
@@ -53,10 +55,13 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		server.getScheduler().runTaskTimer(plugin, new updateClass(), 1, 8);
 		
 		server.broadcastMessage("timer started");
+		
+		board = createBoard();
 			
 	}
 	
-	public void onDeath(PlayerDeathEvent event) {
+	public void onDeath(PlayerDeathEvent event) 
+	{
 		Scoreboard b = updateBoard(event.getEntity());
 		for (Player p : runners)
 		{
@@ -172,18 +177,21 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		return false;
 	}
 	
-	private void createBoard(Player p)
+	private Scoreboard createBoard()
 	{
 		ScoreboardManager m = Bukkit.getScoreboardManager();
-		Scoreboard board = m.getNewScoreboard();
-		Objective o = board.registerNewObjective("MultiplayerManhuntScoreboard", "", "");
+		Scoreboard b = m.getNewScoreboard();
+		Objective o = b.registerNewObjective("MultiplayerManhuntScoreboard", "", "");
 		Score score = o.getScore("Runners With Lives Left");
 		score.setScore(1);
-		p.setScoreboard(board);
+		return b;
 	}
 	
 	private Scoreboard updateBoard(Player p)
 	{
+		p.getScoreboard();
+		
+		//TODO update boards on death
 		return null;
 	}
 	
