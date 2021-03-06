@@ -115,6 +115,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 			server.broadcastMessage(p.getPlayerListName() + " has been added to the " + ChatColor.RED + "hunter team");
 			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
 			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			p.setScoreboard(board);
 			return true;
 		}
 		else if ("teamrunner".equals(cmd.getName()))
@@ -154,6 +155,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 			server.broadcastMessage(p.getPlayerListName() + " has been added to the " + ChatColor.BLUE + "runner team");
 			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
 			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			p.setScoreboard(board);
 			return true;
 			
 		}
