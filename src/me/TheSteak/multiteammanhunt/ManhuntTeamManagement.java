@@ -17,7 +17,6 @@ import org.bukkit.scoreboard.ScoreboardManager;
 /*
  * TODO:
  *   update board
- *   set board to people on team join
  * None
  * IDEA:
  *  
@@ -62,14 +61,13 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	
 	public void onDeath(PlayerDeathEvent event) 
 	{
-		Scoreboard b = updateBoard(event.getEntity());
 		for (Player p : runners)
 		{
-			p.setScoreboard(b);
+			p.setScoreboard(board);
 		}
 		for (Player p : hunters)
 		{
-			p.setScoreboard(b);
+			p.setScoreboard(board);
 		}
 	}
 
@@ -189,12 +187,12 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		return b;
 	}
 	
-	private Scoreboard updateBoard(Player p)
+	private void updateBoard(Player p)
 	{
 		p.getScoreboard();
 		
 		//TODO update boards on death
-		return null;
+		//Tmake sure board get updated
 	}
 	
 	private void updatePositions()
