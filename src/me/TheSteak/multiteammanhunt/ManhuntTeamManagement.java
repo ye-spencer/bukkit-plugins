@@ -61,6 +61,10 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	
 	public void onDeath(PlayerDeathEvent event) 
 	{
+		if (runners.contains((Player)event.getEntity()))
+		{
+			//TODO
+		}
 		for (Player p : runners)
 		{
 			p.setScoreboard(board);
@@ -128,6 +132,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 				hunterpoint.remove(hunters.indexOf(p));
 				hunters.remove(p);
 			}
+			addRunnerToScoreboard(p);
 			runners.add(p);	
 			if (runners.size() == 1)
 			{
@@ -189,10 +194,16 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	
 	private void updateBoard(Player p)
 	{
-		p.getScoreboard();
-		
+		Objective o = board.getObjective("MultiplayerManhuntScoreboard");
+		Score score = o.getScore("Runners With Lives Left");
+		score.setScore(score.getScore() - 1);
 		//TODO update boards on death
 		//Tmake sure board get updated
+	}
+	
+	private void addRunnerToScoreboard(Player p)
+	{
+		
 	}
 	
 	private void updatePositions()
