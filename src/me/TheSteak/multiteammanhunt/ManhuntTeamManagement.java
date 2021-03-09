@@ -63,7 +63,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	{
 		if (runners.contains((Player)event.getEntity()))
 		{
-			//TODO
+			updateBoard((Player)event.getEntity());
 		}
 		for (Player p : runners)
 		{
