@@ -188,7 +188,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		Scoreboard b = m.getNewScoreboard();
 		Objective o = b.registerNewObjective("MultiplayerManhuntScoreboard", "", "");
 		Score score = o.getScore("Runners With Lives Left");
-		score.setScore(1);
+		score.setScore(0);
 		return b;
 	}
 	
@@ -203,7 +203,10 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	
 	private void addRunnerToScoreboard(Player p)
 	{
-		
+		Objective o = board.getObjective("MultiplayerManhuntScoreboard");
+		Score score = o.getScore("Runners With Lives Left");
+		score.setScore(score.getScore() + 1);
+		o = board.registerNewObjective(p.getName(), "", "");
 	}
 	
 	private void updatePositions()
