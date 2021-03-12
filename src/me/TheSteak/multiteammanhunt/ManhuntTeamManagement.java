@@ -10,16 +10,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
 /*
  * TODO:
- *   update board
- * None
+ * 
  * IDEA:
- *  
+ * 
  * ERROR:
  */
 public class ManhuntTeamManagement implements CommandExecutor, Listener
@@ -184,29 +181,23 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	
 	private Scoreboard createBoard()
 	{
-		ScoreboardManager m = Bukkit.getScoreboardManager();
-		Scoreboard b = m.getNewScoreboard();
-		Objective o = b.registerNewObjective("MultiplayerManhuntScoreboard", "", "");
-		Score score = o.getScore("Runners With Lives Left");
-		score.setScore(0);
+		Scoreboard b = Bukkit.getScoreboardManager().getNewScoreboard();
+		b.registerNewObjective("MultiplayerManhuntScoreboard", "", "").getScore("Runners With Lives Left").setScore(0);
 		return b;
 	}
 	
 	private void updateBoard(Player p)
 	{
-		Objective o = board.getObjective("MultiplayerManhuntScoreboard");
-		Score score = o.getScore("Runners With Lives Left");
+		Score score = board.getObjective("MultiplayerManhuntScoreboard").getScore("Runners With Lives Left");
 		score.setScore(score.getScore() - 1);
-		//TODO update boards on death
-		//Tmake sure board get updated
+		board.getObjective(p.getName()).unregister();
 	}
 	
 	private void addRunnerToScoreboard(Player p)
 	{
-		Objective o = board.getObjective("MultiplayerManhuntScoreboard");
-		Score score = o.getScore("Runners With Lives Left");
+		Score score = board.getObjective("MultiplayerManhuntScoreboard").getScore("Runners With Lives Left");
 		score.setScore(score.getScore() + 1);
-		o = board.registerNewObjective(p.getName(), "", "");
+		board.registerNewObjective(p.getName(), "", "");
 	}
 	
 	private void updatePositions()
@@ -233,7 +224,6 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	
 	private class updateClass implements Runnable
 	{
-		@Override
 		public void run() 
 		{
 			updatePositions();
