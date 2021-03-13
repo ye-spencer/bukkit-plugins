@@ -50,7 +50,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		
 		server.broadcastMessage("timer started");
 		
-		board = createBoard();
+		createBoard();
 			
 	}
 	
@@ -171,11 +171,10 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		return false;
 	}
 	
-	private Scoreboard createBoard()
+	private void createBoard()
 	{
-		Scoreboard b = Bukkit.getScoreboardManager().getNewScoreboard();
-		b.registerNewObjective("MultiplayerManhuntScoreboard", "", "").getScore("Runners With Lives Left").setScore(0);
-		return b;
+		board = Bukkit.getScoreboardManager().getNewScoreboard();
+		board.registerNewObjective("MultiplayerManhuntScoreboard", "", "").getScore("Runners With Lives Left").setScore(0);
 	}
 	
 	private void updateBoard(Player p)
