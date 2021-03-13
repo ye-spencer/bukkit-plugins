@@ -46,8 +46,6 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		
 		server = Bukkit.getServer();
 		
-		server.broadcastMessage("started plugin");
-		
 		server.getScheduler().runTaskTimer(plugin, new updateClass(), 1, 8);
 		
 		server.broadcastMessage("timer started");
@@ -59,17 +57,11 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	public void onDeath(PlayerDeathEvent event) 
 	{
 		if (runners.contains((Player)event.getEntity()))
-		{
 			updateBoard((Player)event.getEntity());
-		}
 		for (Player p : runners)
-		{
 			p.setScoreboard(board);
-		}
 		for (Player p : hunters)
-		{
 			p.setScoreboard(board);
-		}
 	}
 
 	@Override
