@@ -16,8 +16,12 @@ import org.bukkit.scoreboard.Scoreboard;
  * TODO:
  * 
  * IDEA:
+ * add a get teams method
  * 
  * ERROR:
+ * can't switch teams without error
+ * you can join a team twice
+ * 
  */
 public class ManhuntTeamManagement implements CommandExecutor, Listener
 {
