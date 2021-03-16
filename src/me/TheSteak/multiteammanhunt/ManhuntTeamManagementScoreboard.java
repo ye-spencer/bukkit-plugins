@@ -9,6 +9,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.scoreboard.Scoreboard;
 /*
  * TODO:
  * 
@@ -20,7 +23,7 @@ import org.bukkit.event.Listener;
  * you can join a team twice
  * 
  */
-public class ManhuntTeamManagement implements CommandExecutor, Listener
+public class ManhuntTeamManagementScoreboard implements CommandExecutor, Listener
 {
 	
 	private Main plugin;
@@ -30,8 +33,9 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 	
 	private Server server;
 	
+	private Scoreboard board;
 	
-	public ManhuntTeamManagement (Main in)
+	public ManhuntTeamManagementScoreboard (Main in)
 	{
 		plugin = in;
 		
@@ -49,7 +53,19 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		server.getScheduler().runTaskTimer(plugin, new updateClass(), 1, 8);
 		
 		server.broadcastMessage("timer started");
+		
+		createBoard();
 			
+	}
+	
+	public void onDeath(PlayerDeathEvent event) 
+	{
+		if (runners.contains((Player)event.getEntity()))
+			updateBoard((Player)event.getEntity());
+		for (Player p : runners)
+			p.setScoreboard(board);
+		for (Player p : hunters)
+			p.setScoreboard(board);
 	}
 
 	@Override
@@ -94,6 +110,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 			server.broadcastMessage(p.getPlayerListName() + " has been added to the " + ChatColor.RED + "hunter team");
 			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
 			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			p.setScoreboard(board);
 			return true;
 		}
 		else if ("teamrunner".equals(cmd.getName()))
@@ -108,6 +125,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 				hunterpoint.remove(hunters.indexOf(p));
 				hunters.remove(p);
 			}
+			addRunnerToScoreboard(p);
 			runners.add(p);	
 			if (runners.size() == 1)
 			{
@@ -133,6 +151,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 			server.broadcastMessage(p.getPlayerListName() + " has been added to the " + ChatColor.BLUE + "runner team");
 			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
 			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			p.setScoreboard(board);
 			return true;
 			
 		}
@@ -154,6 +173,26 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 			return true;
 		}
 		return false;
+	}
+	
+	private void createBoard()
+	{
+		board = Bukkit.getScoreboardManager().getNewScoreboard();
+		board.registerNewObjective("MultiplayerManhuntScoreboard", "", "").getScore("Runners With Lives Left").setScore(0);
+	}
+	
+	private void updateBoard(Player p)
+	{
+		Score score = board.getObjective("MultiplayerManhuntScoreboard").getScore("Runners With Lives Left");
+		score.setScore(score.getScore() - 1);
+		board.getObjective(p.getName()).unregister();
+	}
+	
+	private void addRunnerToScoreboard(Player p)
+	{
+		Score score = board.getObjective("MultiplayerManhuntScoreboard").getScore("Runners With Lives Left");
+		score.setScore(score.getScore() + 1);
+		board.registerNewObjective(p.getName(), "", "");
 	}
 	
 	private void updatePositions()
