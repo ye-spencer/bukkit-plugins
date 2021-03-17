@@ -59,7 +59,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		Player p = (Player)sender;
 		if ("teamhunter".equals(cmd.getName()))
 		{
-			if (hunters.contains(p))
+			if (playerArrToString(hunters).contains(p.getName()))
 			{
 				p.sendMessage("You are already on the " + ChatColor.RED + "hunter team");
 				return true;
@@ -98,7 +98,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		}
 		else if ("teamrunner".equals(cmd.getName()))
 		{
-			if (runners.contains(p))
+			if (playerArrToString(runners).contains(p.getName()))
 			{
 				p.sendMessage("You are already on the " + ChatColor.BLUE + "runner team");
 				return true;
