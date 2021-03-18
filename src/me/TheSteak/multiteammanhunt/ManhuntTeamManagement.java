@@ -153,6 +153,17 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 			}
 			return true;
 		}
+		else if ("getmhteams".equals(cmd.getName()))
+		{
+			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
+			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			return true;
+		}
+		else if ("leaveteam".equals(cmd.getName()))
+		{
+			//TODO
+			return true;
+		}
 		return false;
 	}
 	
