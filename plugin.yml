@@ -17,3 +17,10 @@ commands:
   switchtrack:
     aliases: [switch]
     description: /switch as a hunter (or a runner) to switch who you are tracking
+  getmhteams:
+    aliases: [mhteam]
+    description: /mhteam to view the current teams
+  leaveteam:
+    aliases: [lmht]
+    descriptionL /lmht to leave the game
+  
