@@ -161,7 +161,21 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		}
 		else if ("leaveteam".equals(cmd.getName()))
 		{
-			//TODO
+			int num = runners.indexOf(p);
+			if (num > 0)
+			{
+				runners.remove(num);
+				runnerpoint.remove(num);
+				return true;
+			}
+			num = hunters.indexOf(p);
+			if (num > 0)
+			{
+				hunters.remove(num);
+				hunterpoint.remove(num);
+				return true;
+			}
+			p.sendMessage("you are not on a team");
 			return true;
 		}
 		return false;
