@@ -38,6 +38,8 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		plugin.getCommand("teamhunter").setExecutor(this);
 		plugin.getCommand("teamrunner").setExecutor(this);
 		plugin.getCommand("switchtrack").setExecutor(this);
+		plugin.getCommand("gethmteams").setExecutor(this);
+		plugin.getCommand("leaveteam").setExecutor(this);
 		
 		hunters = new ArrayList<Player>();
 		runners = new ArrayList<Player>();
