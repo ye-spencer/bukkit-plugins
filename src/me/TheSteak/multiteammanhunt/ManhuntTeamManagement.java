@@ -13,11 +13,8 @@ import org.bukkit.event.Listener;
  * TODO:
  * 
  * IDEA:
- * add a get teams method
  * 
  * ERROR:
- * can't switch teams without error
- * you can join a team twice
  * 
  */
 public class ManhuntTeamManagement implements CommandExecutor, Listener
