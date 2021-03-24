@@ -46,8 +46,6 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 		server = Bukkit.getServer();
 		
 		server.getScheduler().runTaskTimer(plugin, new updateClass(), 1, 8);
-		
-		server.broadcastMessage("timer started");
 			
 	}
 
