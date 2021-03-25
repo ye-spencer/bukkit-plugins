@@ -172,7 +172,7 @@ public class ManhuntTeamManagement implements CommandExecutor, Listener
 				hunterpoint.remove(num);
 				return true;
 			}
-			p.sendMessage("you are not on a team");
+			p.sendMessage("you are already not on a team");
 			return true;
 		}
 		return false;
