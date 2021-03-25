@@ -17,7 +17,7 @@ import org.bukkit.event.Listener;
  * ERROR:
  * 
  */
-public class ManhuntTeamManagement implements CommandExecutor, Listener
+public class ManhuntTeamManagement implements CommandExecutor
 {
 	
 	private Main plugin;
