@@ -36,6 +36,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		plugin.getCommand("switchtrack").setExecutor(this);
 		plugin.getCommand("gethmteams").setExecutor(this);
 		plugin.getCommand("leaveteam").setExecutor(this);
+		plugin.getCommand("emptyteams").setExecutor(this);
 		
 		hunters = new ArrayList<Player>();
 		runners = new ArrayList<Player>();
@@ -172,6 +173,11 @@ public class ManhuntTeamManagement implements CommandExecutor
 				return true;
 			}
 			p.sendMessage("you are already not on a team");
+			return true;
+		}
+		else if ("emptyteams".equals(cmd.getName()))
+		{
+			//TODO
 			return true;
 		}
 		return false;
