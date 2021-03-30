@@ -177,7 +177,12 @@ public class ManhuntTeamManagement implements CommandExecutor
 		}
 		else if ("emptyteams".equals(cmd.getName()))
 		{
-			//TODO
+			runners.clear();
+			hunters.clear();
+			runnerpoint.clear();
+			hunterpoint.clear();
+			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
+			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
 			return true;
 		}
 		return false;
