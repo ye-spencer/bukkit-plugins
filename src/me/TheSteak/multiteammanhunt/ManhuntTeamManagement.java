@@ -185,6 +185,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
 			return true;
 		}
+		server.broadcastMessage("pp moment");
 		return false;
 	}
 	
