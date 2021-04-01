@@ -3,6 +3,8 @@ version: 2.5.0
 author: TheSteak
 main: me.TheSteak.multiteammanhunt.Main
 description: A plugin that allows for tracking of different players on the speedrunner team
+api-version: 1.16
+prefix: multimanhunt
 
 commands:
   manhuntcompass:
@@ -18,11 +20,11 @@ commands:
     aliases: [switch]
     description: /switch as a hunter (or a runner) to switch who you are tracking
   getmhteams:
-    aliases: [mhteam]
+    aliases: [mhteams]
     description: /mhteam to view the current teams
   leaveteam:
-    aliases: [lmht]
     description: /lmht to leave the game
   emptyteams:
-    aliases: [empty]
-    description: /empty to remove all players from teams
+    description: /empty to remove all players from team
+    usage: "Usage: /emptyteams"
+  
