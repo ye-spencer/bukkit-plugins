@@ -52,7 +52,6 @@ public class ManhuntTeamManagement implements CommandExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] other) 
 	{
-		server.broadcastMessage("command called");
 		Player p = (Player)sender;
 		if ("teamhunter".equals(cmd.getName()))
 		{
