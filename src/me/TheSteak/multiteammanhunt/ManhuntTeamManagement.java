@@ -205,8 +205,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 	private String playerArrToString(ArrayList<Player> arr)
 	{
 		StringBuilder s = new StringBuilder();
-		for (Player p : arr)
-			s.append(p.getPlayerListName() + " ");
+		for (Player p : arr) s.append(p.getPlayerListName() + " ");
 		return s.toString();
 	}
 	
