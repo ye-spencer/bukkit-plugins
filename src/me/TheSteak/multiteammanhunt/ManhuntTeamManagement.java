@@ -208,13 +208,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		return s.toString();
 	}
 	
-	private class updateClass implements Runnable
-	{
-		public void run() 
-		{
-			updatePositions();
-		}
-	}
+	private class updateClass implements Runnable { public void run() { updatePositions(); } }
 	
 	
 }
