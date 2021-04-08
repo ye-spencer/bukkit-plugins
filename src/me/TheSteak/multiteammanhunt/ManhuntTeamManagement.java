@@ -88,8 +88,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 				p.sendMessage("Your compass is now pointing to " + ChatColor.GREEN  + runners.get(0).getPlayerListName().toUpperCase());
 			}
 			server.broadcastMessage(p.getPlayerListName() + " has been added to the " + ChatColor.RED + "hunter team");
-			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
-			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			listTeams();
 			return true;
 		}
 		else if ("teamrunner".equals(cmd.getName()))
@@ -127,8 +126,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 						" [Distance " + runners.get(0).getLocation().distance(runners.get(0).getLocation()) + "]");
 			}
 			server.broadcastMessage(p.getPlayerListName() + " has been added to the " + ChatColor.BLUE + "runner team");
-			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
-			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			listTeams();
 			return true;
 			
 		}
@@ -151,8 +149,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 		}
 		else if ("getmhteams".equals(cmd.getName()))
 		{
-			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
-			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			listTeams();
 			return true;
 		}
 		else if ("leaveteam".equals(cmd.getName()))
@@ -180,8 +177,7 @@ public class ManhuntTeamManagement implements CommandExecutor
 			hunters.clear();
 			runnerpoint.clear();
 			hunterpoint.clear();
-			server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
-			server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
+			listTeams();
 			return true;
 		}
 		return false;
@@ -199,6 +195,12 @@ public class ManhuntTeamManagement implements CommandExecutor
 			int k = runnerpoint.get(i);
 			if (k >= 0 && hunters.get(k).getWorld().getEnvironment() == runners.get(i).getWorld().getEnvironment()) runners.get(i).setCompassTarget(hunters.get(k).getLocation());
 		}
+	}
+	
+	private void listTeams()
+	{
+		server.broadcastMessage(ChatColor.BLUE + "Runner Team " + playerArrToString(runners) + runnerpoint.toString());
+		server.broadcastMessage(ChatColor.RED + "Hunter Team " + playerArrToString(hunters) + hunterpoint.toString());
 	}
 	
 	private String playerArrToString(ArrayList<Player> arr)
