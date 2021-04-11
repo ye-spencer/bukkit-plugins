@@ -1,0 +1,7 @@
+name: IdiotDown
+version: 1.0.0
+author: TheSteak
+main: me.TheSteak.idiotdown.Main
+description: A plugin that displays special death messages for certain players
+api-version: 1.16
+prefix: IdiotDown

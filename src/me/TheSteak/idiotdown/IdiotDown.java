@@ -7,6 +7,14 @@ import net.md_5.bungee.api.ChatColor;
 
 public class IdiotDown implements Listener
 {
+	
+	
+	
+	public IdiotDown(Main in)
+	{
+		
+	}
+	
 	public void onDeath(PlayerDeathEvent event) 
 	{
 		if (event.getEntity().getName().equals("C_Salt"))
