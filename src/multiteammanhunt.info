@@ -27,4 +27,3 @@ commands:
   emptyteams:
     description: /empty to remove all players from team
     usage: "Usage: /emptyteams"
-  

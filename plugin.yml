@@ -1,30 +1,7 @@
-name: MultiTeamManhunt
-version: 2.5.0
+name: IdiotDown
+version: 1.0.0
 author: TheSteak
-main: me.TheSteak.multiteammanhunt.Main
-description: A plugin that allows for tracking of different players on the speedrunner team
+main: me.TheSteak.idiotdown.Main
+description: A plugin that displays special death messages for certain players
 api-version: 1.16
-prefix: multimanhunt
-
-commands:
-  manhuntcompass:
-    aliases: [mhc]
-    description: /mhc to give yourself a compass
-  teamhunter:
-    aliases: [thunt]
-    description: /thunt to set your team as hunter
-  teamrunner:
-    aliases: [trun]
-    description: /trun to set your team as runner
-  switchtrack:
-    aliases: [switch]
-    description: /switch as a hunter (or a runner) to switch who you are tracking
-  getmhteams:
-    aliases: [mhteams]
-    description: /mhteam to view the current teams
-  leaveteam:
-    description: /lmht to leave the game
-  emptyteams:
-    description: /empty to remove all players from team
-    usage: "Usage: /emptyteams"
-  
+prefix: IdiotDown
