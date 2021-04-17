@@ -32,11 +32,22 @@ public class MultiplayerDeathSwap implements CommandExecutor
 	{
 		if ("joindeathgame".equals(cmd.getName()))
 		{
-			
+			Player p = (Player)sender;
+			if (players.contains(p)) p.sendMessage("You are already in the death swap game");
+			else
+			{
+				players.add(p);
+				p.sendMessage("You have now joined the death swap game");
+			}
+			return true;
 		}
 		else if ("leavedeathgame".equals(cmd.getName()))
 		{
-			
+			Player p = (Player)sender;
+			boolean on = players.remove(p);
+			if (on) p.sendMessage("You have now left the death game");
+			else p.sendMessage("You were not in the death game previously");
+			return true;
 		}
 		else if ("startdeathgame".equals(cmd.getName()))
 		{
