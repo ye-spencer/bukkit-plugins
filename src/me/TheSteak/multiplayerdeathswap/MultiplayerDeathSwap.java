@@ -15,6 +15,8 @@ public class MultiplayerDeathSwap implements CommandExecutor
 	
 	private ArrayList<Player> players;
 	
+	private boolean gameStarted;
+	
 	public MultiplayerDeathSwap(Main main)
 	{
 		this.plugin = main;
@@ -23,6 +25,8 @@ public class MultiplayerDeathSwap implements CommandExecutor
 		plugin.getCommand("joindeathgame").setExecutor(this);
 		plugin.getCommand("leavedeathgame").setExecutor(this);
 		plugin.getCommand("startdeathgame").setExecutor(this);
+		
+		gameStarted = true;
 				
 		
 	}
@@ -51,8 +55,19 @@ public class MultiplayerDeathSwap implements CommandExecutor
 		}
 		else if ("startdeathgame".equals(cmd.getName()))
 		{
-			
+			if (gameStarted) server.broadcastMessage("Game has already been started");
+			else
+			{
+				gameStarted = true;
+				server.broadcastMessage("Game has officially begun");
+				startGame();
+			}
 		}
 		return false;
+	}
+	
+	private void startGame()
+	{
+		
 	}
 }
