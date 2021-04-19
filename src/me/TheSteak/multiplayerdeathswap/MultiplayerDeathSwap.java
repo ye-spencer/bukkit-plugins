@@ -7,8 +7,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 
-public class MultiplayerDeathSwap implements CommandExecutor
+import net.md_5.bungee.api.ChatColor;
+
+public class MultiplayerDeathSwap implements CommandExecutor, Listener
 {
 	private Main plugin;
 	private Server server;
@@ -29,6 +33,12 @@ public class MultiplayerDeathSwap implements CommandExecutor
 		gameStarted = true;
 				
 		
+	}
+	
+	
+	public void onDeath(PlayerDeathEvent event) 
+	{
+
 	}
 	
 	@Override
@@ -68,6 +78,15 @@ public class MultiplayerDeathSwap implements CommandExecutor
 	
 	private void startGame()
 	{
-		
+		while(players.size() > 1)
+		{
+			newRound();
+		}
+	}
+	
+	private void newRound()
+	{
+		//timer
+		//check for game end every once in a while
 	}
 }
