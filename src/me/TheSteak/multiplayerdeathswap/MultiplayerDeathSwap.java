@@ -38,7 +38,18 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	public void onDeath(PlayerDeathEvent event) 
 	{
-
+		Player p = event.getEntity();
+		if (players.remove(p))
+		{
+			if (players.size() == 1)
+			{
+				//TODO WINNER
+			}
+			else if (players.size() == 0)
+			{
+				//TODO NO WINNER
+			}
+		}
 	}
 	
 	@Override
@@ -58,8 +69,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		else if ("leavedeathgame".equals(cmd.getName()))
 		{
 			Player p = (Player)sender;
-			boolean on = players.remove(p);
-			if (on) p.sendMessage("You have now left the death game");
+			if (players.remove(p)) p.sendMessage("You have now left the death game");
 			else p.sendMessage("You were not in the death game previously");
 			return true;
 		}
