@@ -39,15 +39,17 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	public void onDeath(PlayerDeathEvent event) 
 	{
 		Player p = event.getEntity();
-		if (players.remove(p))
+		if (gameStarted && players.remove(p))
 		{
 			if (players.size() == 1)
 			{
-				//TODO WINNER
+				gameStarted = false;
+				server.broadcastMessage("The winner of death swap is " + ChatColor.GOLD + p.getName());
 			}
 			else if (players.size() == 0)
 			{
-				//TODO NO WINNER
+				server.broadcastMessage("lol, no one won, you all died, BAD");
+				gameStarted = false;
 			}
 		}
 	}
