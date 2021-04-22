@@ -1,6 +1,8 @@
 package me.TheSteak.multiplayerdeathswap;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -21,6 +23,8 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private boolean gameStarted;
 	
+	private Timer timer;
+	
 	public MultiplayerDeathSwap(Main main)
 	{
 		this.plugin = main;
@@ -31,6 +35,8 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		plugin.getCommand("startdeathgame").setExecutor(this);
 		
 		gameStarted = true;
+		
+		timer = new Timer();
 				
 		
 	}
@@ -45,11 +51,13 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			{
 				gameStarted = false;
 				server.broadcastMessage("The winner of death swap is " + ChatColor.GOLD + p.getName());
+				timer.cancel();
 			}
 			else if (players.size() == 0)
 			{
 				server.broadcastMessage("lol, no one won, you all died, BAD");
 				gameStarted = false;
+				timer.cancel();
 			}
 		}
 	}
@@ -90,7 +98,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private void startGame()
 	{
-		while(players.size() > 1)
+		while (players.size() > 1)
 		{
 			newRound();
 		}
@@ -98,7 +106,15 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private void newRound()
 	{
-		//timer
-		//check for game end every once in a while
+		timer.schedule(new Swapper(), 1000); //TODO need random time
+	}
+	
+	private class Swapper extends TimerTask
+	{
+		@Override
+		public void run()
+		{
+			//need to swap all the players
+		}
 	}
 }
