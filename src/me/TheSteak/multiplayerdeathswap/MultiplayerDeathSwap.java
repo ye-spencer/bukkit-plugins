@@ -25,6 +25,8 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private Timer timer;
 	
+	private final int minutesVary = 2, minutesMin = 4;
+	
 	public MultiplayerDeathSwap(Main main)
 	{
 		this.plugin = main;
@@ -106,7 +108,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private void newRound()
 	{
-		timer.schedule(new Swapper(), 1000); //TODO need random time
+		timer.schedule(new Swapper(), (long) (Math.random() * (minutesVary * 60000) + (minutesMin * 60000)));
 	}
 	
 	private class Swapper extends TimerTask
