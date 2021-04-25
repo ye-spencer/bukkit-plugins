@@ -3,7 +3,9 @@ package me.TheSteak.multiplayerdeathswap;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,7 +14,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-import net.md_5.bungee.api.ChatColor;
 
 public class MultiplayerDeathSwap implements CommandExecutor, Listener
 {
@@ -116,6 +117,19 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		@Override
 		public void run()
 		{
+			for (int i = 10; i > 0; i--)
+			{
+				
+				server.broadcastMessage(ChatColor.RED + "Swapping in " + i);
+				try 
+				{
+					TimeUnit.SECONDS.sleep(1);
+				} 
+				catch (InterruptedException e) 
+				{
+					e.printStackTrace();
+				}
+			}
 			//need to swap all the players
 		}
 	}
