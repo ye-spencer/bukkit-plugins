@@ -39,8 +39,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		
 		gameStarted = true;
 		
-		timer = new Timer();
-				
+		timer = new Timer();		
 		
 	}
 	
@@ -130,6 +129,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 					e.printStackTrace();
 				}
 			}
+			server.broadcastMessage(ChatColor.RED + "Swapping. . . ");
 			//need to swap all the players
 		}
 	}
