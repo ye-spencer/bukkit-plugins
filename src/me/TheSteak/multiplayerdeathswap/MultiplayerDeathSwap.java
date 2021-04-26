@@ -131,6 +131,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			}
 			server.broadcastMessage(ChatColor.RED + "Swapping. . . ");
 			//need to swap all the players
+			//1 get old positions, then swap
 		}
 	}
 }
