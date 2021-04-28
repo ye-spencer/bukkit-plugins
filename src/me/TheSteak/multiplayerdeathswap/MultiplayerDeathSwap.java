@@ -112,6 +112,16 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		timer.schedule(new Swapper(), (long) (Math.random() * (minutesVary * 60000) + (minutesMin * 60000)));
 	}
 	
+	private boolean properlyShifted(ArrayList<Location> old, ArrayList<Location> shuffled)
+	{
+		return false;
+	}
+	
+	private void shuffle(ArrayList<Location> arr)
+	{
+		
+	}
+	
 	private class Swapper extends TimerTask
 	{
 		@Override
@@ -131,12 +141,20 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 				}
 			}
 			server.broadcastMessage(ChatColor.RED + "Swapping. . . ");
-			ArrayList<Location> oldLocations = new ArrayList<Location>();
+			ArrayList<Location> oldLocations = new ArrayList<Location>(), temp = new ArrayList<Location>();
 			for (Player p : players)
 			{
 				oldLocations.add(p.getLocation());
+				temp.add(p.getLocation());
 			}
-			//1 get old positions, then swap
+			while (!properlyShifted(temp, oldLocations))
+			{
+				shuffle(oldLocations);
+			}
+			for (int i = 0; i < players.size(); i++)
+			{
+				players.get(i).teleport(oldLocations.get(i));
+			}
 		}
 	}
 }
