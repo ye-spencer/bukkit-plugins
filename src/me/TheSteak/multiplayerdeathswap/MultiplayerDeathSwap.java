@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -130,7 +131,11 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 				}
 			}
 			server.broadcastMessage(ChatColor.RED + "Swapping. . . ");
-			//need to swap all the players
+			ArrayList<Location> oldLocations = new ArrayList<Location>();
+			for (Player p : players)
+			{
+				oldLocations.add(p.getLocation());
+			}
 			//1 get old positions, then swap
 		}
 	}
