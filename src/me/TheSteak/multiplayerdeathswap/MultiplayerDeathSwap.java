@@ -1,6 +1,7 @@
 package me.TheSteak.multiplayerdeathswap;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -114,12 +115,14 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private boolean properlyShifted(ArrayList<Location> old, ArrayList<Location> shuffled)
 	{
+		for (int i = 0; i < old.size(); i++)
+			if (shuffled.get(i).equals(old.get(i))) return false;
 		return false;
 	}
 	
 	private void shuffle(ArrayList<Location> arr)
 	{
-		
+		Collections.shuffle(arr);
 	}
 	
 	private class Swapper extends TimerTask
