@@ -115,9 +115,8 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private boolean properlyShifted(ArrayList<Location> old, ArrayList<Location> shuffled)
 	{
-		for (int i = 0; i < old.size(); i++)
-			if (shuffled.get(i).equals(old.get(i))) return false;
-		return false;
+		for (int i = 0; i < old.size(); i++) if (shuffled.get(i).equals(old.get(i))) return false;
+		return true;
 	}
 	
 	private void shuffle(ArrayList<Location> arr)
