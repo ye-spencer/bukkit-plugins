@@ -131,7 +131,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		{
 			for (int i = 10; i > 0; i--)
 			{	
-				server.broadcastMessage(ChatColor.RED + "Swapping in " + i);
+				server.broadcastMessage(ChatColor.RED + "Swapping in " + i +  " . . .");
 				try 
 				{
 					TimeUnit.MILLISECONDS.sleep(990);
