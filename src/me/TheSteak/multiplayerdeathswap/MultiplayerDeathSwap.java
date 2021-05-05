@@ -138,7 +138,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 				} 
 				catch (InterruptedException e) 
 				{
-					e.printStackTrace();
+					server.broadcastMessage("ERROR STARTING SWAP TIMER");
 				}
 			}
 			server.broadcastMessage(ChatColor.RED + "Swapping. . . ");
