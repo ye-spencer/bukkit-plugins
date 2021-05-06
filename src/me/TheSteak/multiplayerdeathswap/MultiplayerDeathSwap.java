@@ -28,7 +28,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private Timer timer;
 	
-	private final int minutesVary = 2, minutesMin = 4;
+	private final int minutesVary = 2, minutesMin = 4, secondsPerCountdown = 10;
 	
 	public MultiplayerDeathSwap(Main main)
 	{
@@ -131,7 +131,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		@Override
 		public void run()
 		{
-			for (int i = 10; i > 0; i--)
+			for (int i = secondsPerCountdown; i > 0; i--)
 			{	
 				server.broadcastMessage(ChatColor.RED + "Swapping in " + i +  " . . .");
 				try 
