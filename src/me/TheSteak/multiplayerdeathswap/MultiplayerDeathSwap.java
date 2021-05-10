@@ -2,8 +2,6 @@ package me.TheSteak.multiplayerdeathswap;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import org.bukkit.ChatColor;
@@ -26,8 +24,6 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private boolean gameStarted;
 	
-	private Timer timer;
-	
 	private final int minutesVary = 2, minutesMin = 4, secondsPerCountdown = 10;
 	
 	public MultiplayerDeathSwap(Main main)
@@ -41,7 +37,6 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		
 		gameStarted = true;
 		
-		timer = new Timer();		
 		
 	}
 	
@@ -55,13 +50,11 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			{
 				gameStarted = false;
 				server.broadcastMessage("The winner of death swap is " + ChatColor.GOLD + p.getName());
-				timer.cancel();
 			}
 			else if (players.size() == 0)
 			{
 				server.broadcastMessage("lol, no one won, you all died, BAD");
 				gameStarted = false;
-				timer.cancel();
 			}
 		}
 	}
@@ -110,7 +103,15 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private void newRound()
 	{
-		timer.schedule(new Swapper(), (long) (Math.random() * (minutesVary * 60000) + (minutesMin * 60000)));
+		try 
+		{
+			TimeUnit.SECONDS.sleep((long) (Math.random() * (minutesVary * 60) + (minutesMin * 60)));
+			run();
+		} 
+		catch (InterruptedException e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	private boolean properlyShifted(ArrayList<Location> old, ArrayList<Location> shuffled)
@@ -126,37 +127,35 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		Collections.shuffle(arr);
 	}
 	
-	private class Swapper extends TimerTask
+	private void run()
 	{
-		@Override
-		public void run()
-		{
-			for (int i = secondsPerCountdown; i > 0; i--)
-			{	
-				server.broadcastMessage(ChatColor.RED + "Swapping in " + i +  " . . .");
-				try 
-				{
-					TimeUnit.MILLISECONDS.sleep(990);
-				} 
-				catch (InterruptedException e) 
-				{
-					server.broadcastMessage("ERROR STARTING SWAP TIMER");
-				}
-			}
-			server.broadcastMessage(ChatColor.RED + "Swapping. . . ");
-			ArrayList<Location> oldLocations = new ArrayList<Location>(), temp = new ArrayList<Location>();
-			for (Player p : players)
+		for (int i = secondsPerCountdown; i > 0; i--)
+		{	
+			server.broadcastMessage(ChatColor.RED + "Swapping in " + i +  " . . .");
+			try 
 			{
-				oldLocations.add(p.getLocation());
-				temp.add(p.getLocation());
-			}
-			while (!properlyShifted(temp, oldLocations))
+				TimeUnit.MILLISECONDS.sleep(990);
+			} 
+			catch (InterruptedException e) 
 			{
-				shuffle(oldLocations);
+				server.broadcastMessage("ERROR STARTING SWAP TIMER");
 			}
-			for (int i = 0; i < players.size(); i++) players.get(i).teleport(oldLocations.get(i));
-			
-			server.broadcastMessage(ChatColor.DARK_GREEN + "Swap Complete");
 		}
+		server.broadcastMessage(ChatColor.RED + "Swapping. . . ");
+		ArrayList<Location> oldLocations = new ArrayList<Location>(), temp = new ArrayList<Location>();
+		for (Player p : players)
+		{
+			oldLocations.add(p.getLocation());
+			temp.add(p.getLocation());
+		}
+		while (!properlyShifted(temp, oldLocations))
+		{
+			shuffle(oldLocations);
+		}
+		for (int i = 0; i < players.size(); i++) players.get(i).teleport(oldLocations.get(i));
+		
+		server.broadcastMessage(ChatColor.DARK_GREEN + "Swap Complete");
 	}
+	
+	
 }
