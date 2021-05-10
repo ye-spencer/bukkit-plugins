@@ -116,15 +116,8 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private boolean properlyShifted(ArrayList<Location> old, ArrayList<Location> shuffled)
 	{
-		for (int i = 0; i < old.size(); i++) 
-			if (shuffled.get(i).equals(old.get(i)))
-				return false;
+		for (int i = 0; i < old.size(); i++) if (shuffled.get(i).equals(old.get(i))) return false;
 		return true;
-	}
-	
-	private void shuffle(ArrayList<Location> arr)
-	{
-		Collections.shuffle(arr);
 	}
 	
 	private void run()
@@ -150,7 +143,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		}
 		while (!properlyShifted(temp, oldLocations))
 		{
-			shuffle(oldLocations);
+			Collections.shuffle(oldLocations);
 		}
 		for (int i = 0; i < players.size(); i++) players.get(i).teleport(oldLocations.get(i));
 		
