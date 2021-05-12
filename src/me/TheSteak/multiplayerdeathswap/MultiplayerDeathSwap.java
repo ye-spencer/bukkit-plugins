@@ -24,7 +24,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private boolean gameStarted;
 	
-	private final int minutesVary = 2, minutesMin = 4, secondsPerCountdown = 10;
+	private final int minutesVary = 3, minutesMin = 3, secondsPerCountdown = 10;
 	
 	public MultiplayerDeathSwap(Main main)
 	{
