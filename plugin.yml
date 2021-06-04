@@ -4,7 +4,7 @@ author: TheSteak
 main: me.TheSteak.multiplayerdeathswap.Main
 description: A plugin that alows for multiple players to play death swap
 api-version: 1.16
-prefix: Multiplayer Deathswap
+prefix: Multiplayer Deathswap Game
 
 commands:
   joindeathgame:
