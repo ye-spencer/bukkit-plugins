@@ -127,7 +127,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			server.broadcastMessage(ChatColor.RED + "Swapping in " + i +  " . . .");
 			try 
 			{
-				TimeUnit.MILLISECONDS.sleep(990);
+				TimeUnit.MILLISECONDS.sleep(998);
 			} 
 			catch (InterruptedException e) 
 			{
@@ -141,10 +141,11 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			oldLocations.add(p.getLocation());
 			temp.add(p.getLocation());
 		}
-		while (!properlyShifted(temp, oldLocations))
+		do
 		{
 			Collections.shuffle(oldLocations);
 		}
+		while (!properlyShifted(temp, oldLocations));
 		for (int i = 0; i < players.size(); i++) players.get(i).teleport(oldLocations.get(i));
 		
 		server.broadcastMessage(ChatColor.DARK_GREEN + "Swap Complete");
