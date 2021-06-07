@@ -36,7 +36,6 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		plugin.getCommand("startdeathgame").setExecutor(this);
 		
 		gameStarted = true;
-		
 	}
 	
 	
