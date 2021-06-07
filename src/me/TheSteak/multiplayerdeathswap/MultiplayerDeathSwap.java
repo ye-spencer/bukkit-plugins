@@ -37,7 +37,6 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		
 		gameStarted = true;
 		
-		
 	}
 	
 	
