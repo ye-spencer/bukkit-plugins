@@ -46,8 +46,8 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		{
 			if (players.size() == 1)
 			{
-				gameStarted = false;
 				server.broadcastMessage("The winner of death swap is " + ChatColor.GOLD + p.getName());
+				gameStarted = false;
 			}
 			else if (players.size() == 0)
 			{
@@ -84,7 +84,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			else
 			{
 				gameStarted = true;
-				server.broadcastMessage("Game has officially begun");
+				server.broadcastMessage("Deathswap has begun!");
 				startGame();
 			}
 		}
@@ -93,10 +93,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private void startGame()
 	{
-		while (players.size() > 1)
-		{
-			newRound();
-		}
+		while (players.size() > 1) { newRound(); }
 	}
 	
 	private void newRound()
