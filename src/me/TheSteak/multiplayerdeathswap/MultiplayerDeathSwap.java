@@ -103,10 +103,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			TimeUnit.SECONDS.sleep((long) (Math.random() * (minutesVary * 60) + (minutesMin * 60)));
 			run();
 		} 
-		catch (InterruptedException e) 
-		{
-			e.printStackTrace();
-		}
+		catch (InterruptedException e) { e.printStackTrace(); }
 	}
 	
 	private boolean properlyShifted(ArrayList<Location> old, ArrayList<Location> shuffled)
