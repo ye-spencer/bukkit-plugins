@@ -28,9 +28,9 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	public MultiplayerDeathSwap(Main plugin)
 	{		
 		server = plugin.getServer();
-		plugin.getCommand("joindeathgame").setExecutor(this);
-		plugin.getCommand("leavedeathgame").setExecutor(this);
-		plugin.getCommand("startdeathgame").setExecutor(this);
+		plugin.getCommand("joindeathswap").setExecutor(this);
+		plugin.getCommand("leavedeathswap").setExecutor(this);
+		plugin.getCommand("startdeathswap").setExecutor(this);
 		
 		gameStarted = true;
 	}
