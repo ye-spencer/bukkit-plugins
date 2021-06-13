@@ -17,7 +17,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class MultiplayerDeathSwap implements CommandExecutor, Listener
 {
-	private Main plugin;
 	private Server server;
 	
 	private ArrayList<Player> players;
@@ -26,10 +25,8 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private final int minutesVary = 3, minutesMin = 3, secondsPerCountdown = 10;
 	
-	public MultiplayerDeathSwap(Main main)
-	{
-		this.plugin = main;
-		
+	public MultiplayerDeathSwap(Main plugin)
+	{		
 		server = plugin.getServer();
 		plugin.getCommand("joindeathgame").setExecutor(this);
 		plugin.getCommand("leavedeathgame").setExecutor(this);
