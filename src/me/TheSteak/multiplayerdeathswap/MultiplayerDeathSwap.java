@@ -48,7 +48,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			}
 			else if (players.size() == 0)
 			{
-				server.broadcastMessage("lol, no one won, you all died, BAD");
+				server.broadcastMessage("No winner, everyone died");
 				gameStarted = false;
 			}
 		}
