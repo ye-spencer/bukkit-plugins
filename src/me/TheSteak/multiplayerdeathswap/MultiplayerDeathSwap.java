@@ -88,11 +88,17 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		return false;
 	}
 	
+	/**
+	 * 
+	 */
 	private void startGame()
 	{
 		while (players.size() > 1) { newRound(); }
 	}
 	
+	/**
+	 * 
+	 */
 	private void newRound()
 	{
 		try 
@@ -103,12 +109,21 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		catch (InterruptedException e) { e.printStackTrace(); }
 	}
 	
+	/**
+	 * 
+	 * @param old
+	 * @param shuffled
+	 * @return
+	 */
 	private boolean properlyShifted(ArrayList<Location> old, ArrayList<Location> shuffled)
 	{
 		for (int i = 0; i < old.size(); i++) if (shuffled.get(i).equals(old.get(i))) return false;
 		return true;
 	}
 	
+	/**
+	 * 
+	 */
 	private void run()
 	{
 		for (int i = secondsPerCountdown; i > 0; i--)
