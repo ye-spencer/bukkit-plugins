@@ -145,10 +145,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			oldLocations.add(p.getLocation());
 			temp.add(p.getLocation());
 		}
-		do
-		{
-			Collections.shuffle(oldLocations);
-		}
+		do { Collections.shuffle(oldLocations); }
 		while (!properlyShifted(temp, oldLocations));
 		for (int i = 0; i < players.size(); i++) players.get(i).teleport(oldLocations.get(i));
 		
