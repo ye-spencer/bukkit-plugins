@@ -116,9 +116,9 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 			server.broadcastMessage(ChatColor.RED + "Swapping in " + i +  " . . .");
 			try  
 			{
-				TimeUnit.MILLISECONDS.sleep(998);
+				TimeUnit.MILLISECONDS.sleep(997);
 			} 
-			catch (InterruptedException e) 
+			catch (InterruptedException error) 
 			{
 				server.broadcastMessage("ERROR WITH SWAP TIMER");
 			}
