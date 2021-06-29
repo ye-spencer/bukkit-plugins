@@ -23,7 +23,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private boolean gameStarted;
 	
-	private final int minutesVary = 3, minutesMin = 2, secondsPerCountdown = 12;
+	private final int minutesVary = 3, minutesMin = 2, secondsPerCountdown = 10;
 	
 	public MultiplayerDeathSwap(Main plugin)
 	{		
