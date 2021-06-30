@@ -23,7 +23,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	
 	private boolean gameStarted;
 	
-	private final int minutesVary = 3, minutesMin = 2, secondsPerCountdown = 10;
+	private final int minutesVary = 3, minutesMin = 2, secondsPerCountdown = 10, secondsPerMinute = 60;
 	
 	public MultiplayerDeathSwap(Main plugin)
 	{		
@@ -97,7 +97,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 	{
 		try 
 		{
-			TimeUnit.SECONDS.sleep((long) (Math.random() * (minutesVary * 60) + (minutesMin * 60)));
+			TimeUnit.SECONDS.sleep((long) (Math.random() * (minutesVary * secondsPerMinute) + (minutesMin * secondsPerMinute)));
 			run();
 		} 
 		catch (InterruptedException e) { e.printStackTrace(); }
