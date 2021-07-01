@@ -132,6 +132,7 @@ public class MultiplayerDeathSwap implements CommandExecutor, Listener
 		}
 		do { Collections.shuffle(oldLocations); }
 		while (!properlyShifted(temp, oldLocations));
+		
 		for (int i = 0; i < players.size(); i++) players.get(i).teleport(oldLocations.get(i));
 		
 		server.broadcastMessage(ChatColor.DARK_GREEN + "SWAP COMPLETE");
