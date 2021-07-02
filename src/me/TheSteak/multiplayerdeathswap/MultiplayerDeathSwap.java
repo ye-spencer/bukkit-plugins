@@ -14,7 +14,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-
+/**
+ * 
+ * @author TheSteak
+ *
+ */
 public class MultiplayerDeathSwap implements CommandExecutor, Listener
 {
 	private Server server;
